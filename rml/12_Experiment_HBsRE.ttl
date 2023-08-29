@@ -1,0 +1,216 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<BasedOnExperimentalDesignTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/All_Parameters_Measurement.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/BasedOnExperimentalDesign/{PersonID}-{ExpProtocolName}-{ExpSampleName}-{BiosampleDayDescription}";
+        rr:class improvit:BasedOnExperimentalDesign
+        ];
+        rr:predicateObjectMap [
+           rr:predicate improvit:hasPersonID;
+           rr:objectMap [
+            rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+            ]
+           ];
+           rr:predicateObjectMap [
+             rr:predicate improvit:hasExpSampleName;
+             rr:objectMap [
+            rml:reference "ExpSampleName";
+            rr:datatype xsd:string
+              ]
+             ];
+           rr:predicateObjectMap [
+            rr:predicate improvit:hasExpTimeStampDay;
+            rr:objectMap [
+            rml:reference "ExpTimeStampDay";
+            rr:datatype xsd:nonNegativeInteger
+            ]
+           ];
+           rr:predicateObjectMap [
+            rr:predicate improvit:hasExpTimeStampMonth;
+            rr:objectMap [
+            rml:reference "ExpTimeStampMonth";
+            rr:datatype xsd:nonNegativeInteger
+            ]
+           ];
+           rr:predicateObjectMap [
+            rr:predicate improvit:hasExpTimeStampYear;
+            rr:objectMap [
+            rml:reference "ExpTimeStampYear";
+            rr:datatype xsd:nonNegativeInteger
+            ];
+           ];
+         rr:predicateObjectMap [
+           rr:predicate improvit:hasStudyName;
+           rr:objectMap [
+             rr:template "http://www.project-improvit.de/Study/{StudyName}";
+             ]
+           ];
+           rr:predicateObjectMap [
+             rr:predicate improvit:hasExpObservation;
+               rr:objectMap [
+               rml:reference "ExpObservation";
+               rr:datatype xsd:string
+               ];
+             ];
+       rr:predicateObjectMap [
+        rr:predicate improvit:expObservationBasedOnExpDesign;
+          rr:objectMap [
+          rr:parentTriplesMap <ExperimentalObservationTripleMap>;
+          ];
+        ];
+      rr:predicateObjectMap [
+          rr:predicate improvit:experimentalProtocolBasedOnExpDesign;
+            rr:objectMap [
+            rr:parentTriplesMap <ExperimentalProtocolTripleMap>;
+          ];
+          ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:experimentBasedOnExpDesign;
+        rr:objectMap [
+        rr:parentTriplesMap <ExperimentTripleMap>;
+        ];
+      ].
+
+<ExperimentalProtocolOfExpDesignTripleMap>
+    a rr:TriplesMap;
+    rml:logicalSource [
+      rml:source "./files/All_Parameters_Measurement.csv";
+      rml:referenceFormulation ql:CSV
+      ];
+    rr:subjectMap [
+      rr:template "http://www.project-improvit.de/ExperimentalProtocol/{ExpProtocolName}";
+      rr:class improvit:ExperimentalProtocol
+      ].
+
+<ExperimentalObservationTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/All_Parameters_Measurement.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/ExperimentalObservation/{ParameterName}-{ExpProtocolName}-{ExpObservation}";
+        rr:class improvit:ExperimentalObservation
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasExpProtocolName;
+          rr:objectMap [
+          rr:template "http://www.project-improvit.de/ExperimentalProtocol/{ExpProtocolName}";
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasParameterName;
+          rr:objectMap [
+          rr:template "http://www.project-improvit.de/Parameter/{ParameterName}";
+          ]
+        ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasStudyName;
+       rr:objectMap [
+         rr:template "http://www.project-improvit.de/Study/{StudyName}";
+         ]
+       ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasExpObservation;
+        rr:objectMap [
+        rml:reference "ExpObservation";
+        rr:datatype xsd:string
+        ]
+      ].
+
+<ExperimentalSampleOfExpDesignTripleMap>
+      a rr:TriplesMap;
+      rml:logicalSource [
+      rml:source "./files/All_Parameters_Measurement.csv";
+      rml:referenceFormulation ql:CSV
+      ];
+      rr:subjectMap [
+      rr:template "http://www.project-improvit.de/ExperimentalSample/{PersonID}-{ExpSampleName}-{BiosampleDayDescription}";
+      rr:class improvit:ExperimentalSample
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:expSampleBasedOnExpDesign;
+        rr:objectMap [
+        rr:parentTriplesMap <BasedOnExperimentalDesignTripleMap>;
+        ];
+    ].
+
+<ExperimentTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/All_Parameters_Measurement.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Experiment/{PersonID}-{ExpSampleName}-{BiosampleDayDescription}";
+        rr:class improvit:Experiment
+        ];
+        rr:predicateObjectMap [
+       rr:predicate improvit:hasExpProtocolName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/ExperimentalProtocol/{ExpProtocolName}";
+       ];
+      ];
+       rr:predicateObjectMap [
+         rr:predicate improvit:hasExpSampleName;
+           rr:objectMap [
+           rml:reference "ExpSampleName";
+           rr:datatype xsd:string
+           ];
+         ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasPersonID;
+       rr:objectMap [
+         rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+       ]
+     ];
+     rr:predicateObjectMap [
+      rr:predicate improvit:hasExpTimeStampDay;
+      rr:objectMap [
+       rml:reference "ExpTimeStampDay";
+       rr:datatype xsd:nonNegativeInteger
+       ]
+     ];
+     rr:predicateObjectMap [
+      rr:predicate improvit:hasExpTimeStampMonth;
+      rr:objectMap [
+       rml:reference "ExpTimeStampMonth";
+       rr:datatype xsd:nonNegativeInteger
+       ]
+     ];
+     rr:predicateObjectMap [
+       rr:predicate improvit:hasStudyName;
+       rr:objectMap [
+         rr:template "http://www.project-improvit.de/Study/{StudyName}";
+         ]
+       ];
+     rr:predicateObjectMap [
+      rr:predicate improvit:hasExpTimeStampYear;
+      rr:objectMap [
+       rml:reference "ExpTimeStampYear";
+       rr:datatype xsd:nonNegativeInteger
+       ]
+     ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasBiosampleDayDescription;
+        rr:objectMap [
+        rml:reference "BiosampleDayDescription";
+        rr:datatype xsd:string
+        ];
+      ].

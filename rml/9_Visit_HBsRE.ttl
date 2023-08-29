@@ -1,0 +1,137 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<DonorVisitTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+          rml:source "./files/Attend.csv";
+          rml:referenceFormulation ql:CSV
+          ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+        rr:class improvit:Donor
+        ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:donorAttend;
+         rr:objectMap [
+          rr:parentTriplesMap <AttendTripleMap>;
+          rr:joinCondition[
+           rr:child "PersonID";
+           rr:parent "PersonID";
+           ];
+         ];
+        ].
+
+<AttendTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+          rml:source "./files/Attend.csv";
+          rml:referenceFormulation ql:CSV
+          ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Attend/{VisitID}";
+        rr:class improvit:Attend
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasPersonID;
+         rr:objectMap [
+         rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+         ]
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasStudyName;
+         rr:objectMap [
+           rr:template "http://www.project-improvit.de/Study/{StudyName}";
+           ]
+         ];
+       rr:predicateObjectMap [
+        rr:predicate improvit:hasVisitDay;
+        rr:objectMap [
+         rml:reference "VisitDay";
+         rr:datatype xsd:nonNegativeInteger
+         ];
+          ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasVisitMonth;
+         rr:objectMap [
+          rml:reference "VisitMonth";
+          rr:datatype xsd:nonNegativeInteger
+          ];
+           ];
+         rr:predicateObjectMap [
+          rr:predicate improvit:hasVisitYear;
+          rr:objectMap [
+           rml:reference "VisitYear";
+           rr:datatype xsd:nonNegativeInteger
+           ];
+            ];
+         rr:predicateObjectMap [
+           rr:predicate improvit:hasBiosampleDayDescription;
+           rr:objectMap [
+           rml:reference "BiosampleDayDescription";
+           rr:datatype xsd:string
+           ];
+         ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasVisit;
+       rr:objectMap [
+        rr:parentTriplesMap <VisitTripleMap>;
+        rr:joinCondition[
+         rr:child "VisitID";
+          rr:parent "VisitID";
+          ];
+        ];
+      ].
+
+<VisitTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+          rml:source "./files/Attend.csv";
+          rml:referenceFormulation ql:CSV
+          ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Visit/{VisitID}";
+        rr:class improvit:Visit
+        ];
+        rr:predicateObjectMap [
+       rr:predicate improvit:hasPersonID;
+       rr:objectMap [
+       rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+       ]
+     ];
+     rr:predicateObjectMap [
+        rr:predicate improvit:hasVisitDate;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Attend/{VisitDate}";
+        ]
+      ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasVisitID;
+      rr:objectMap [
+        rml:reference "VisitID";
+        rr:datatype xsd:string
+        ]
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyName}";
+          ]
+        ];
+   rr:predicateObjectMap [
+     rr:predicate improvit:hasVisitDescription;
+     rr:objectMap [
+       rml:reference "VisitDescription";
+       rr:datatype xsd:string
+      ];
+    ].

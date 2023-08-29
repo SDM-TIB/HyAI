@@ -1,0 +1,127 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<MeasurementToReportTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/ImmuneCell_Anti_HBs_ImmuneResponse.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Measurement/{PersonID}-{ParameterName}-{MeasurementValueUnit}-{MeasurementCategorization}-{MeasurementDescription}-{ExpProtocolName}-{BiosampleDayDescription}";
+       rr:class improvit:Measurement
+        ];
+    rr:predicateObjectMap [
+     rr:predicate improvit:measurementReport;
+     rr:objectMap [
+      rr:parentTriplesMap <ReportTripleMap>;
+      ];
+    ].
+
+<ReportTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/ImmuneCell_Anti_HBs_ImmuneResponse.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Report/{PersonID}-{ParameterName}-{BiosampleDayDescription}-{MeasurementDescription}-{ImmuneResponseStatus}";
+        rr:class improvit:Report
+        ];
+       rr:predicateObjectMap [
+         rr:predicate improvit:hasPersonID;
+         rr:objectMap [
+          rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyName}";
+          ]
+        ];
+       rr:predicateObjectMap [
+        rr:predicate improvit:hasParameterName;
+        rr:objectMap [
+         rr:template "http://www.project-improvit.de/AntigenTiterParameter/{ParameterName}";
+        ];
+       ];
+       rr:predicateObjectMap [
+       rr:predicate improvit:hasMeasurementDescription;
+       rr:objectMap [
+       rml:reference "MeasurementDescription";
+       rr:datatype xsd:string
+       ];
+       ];
+       rr:predicateObjectMap [
+       rr:predicate improvit:hasBiosampleDayDescription;
+       rr:objectMap [
+       rml:reference "BiosampleDayDescription";
+       rr:datatype xsd:string
+       ];
+       ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:reportImmuneResponse;
+         rr:objectMap [
+         rr:parentTriplesMap <ImmuneResponseTripleMap>;
+           ];
+        ].
+
+<ImmuneResponseTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/ImmuneCell_Anti_HBs_ImmuneResponse.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/ImmuneResponse/{ImmuneResponseStatus}";
+        rr:class improvit:ImmuneResponse
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasImmuneResponseStatus;
+        rr:objectMap [
+        rml:reference "ImmuneResponseStatus";
+        rr:datatype xsd:string
+        ];
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasPersonID;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+        ];
+      ];
+      rr:predicateObjectMap [
+     rr:predicate improvit:hasFunctionalCureLabel;
+      rr:objectMap [
+       rr:template "http://www.project-improvit.de/FunctionalCure/{FunctionalCureLabel}";
+     ];
+    ];
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:string
+    ];
+    ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasParameterName;
+       rr:objectMap [
+        rr:template "http://www.project-improvit.de/Parameter/{ParameterName}";
+       ]
+       ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Study/{StudyName}";
+      ];
+      ].

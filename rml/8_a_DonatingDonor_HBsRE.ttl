@@ -1,0 +1,108 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<DonorDonatingBloodTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/All_Parameters_Measurement.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+        rr:class improvit:Donor
+        ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:donatingDonor;
+        rr:objectMap [
+         rr:parentTriplesMap <DonateTripleMap>;
+          ];
+       ].
+
+<DonateTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/All_Parameters_Measurement.csv" ;
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+         rr:template "http://www.project-improvit.de/Donate/{PersonID}-{BiosampleName}-{BiosampleDayDescription}-{BiosampleDonationDay}-{BiosampleDonationMonth}-{BiosampleDonationYear}";
+        rr:class improvit:Donate
+        ];
+            rr:predicateObjectMap [
+            rr:predicate improvit:hasPersonID;
+            rr:objectMap [
+            rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+            ];
+            ];
+          rr:predicateObjectMap [
+            rr:predicate improvit:hasBiosampleName;
+              rr:objectMap [
+              rml:reference "BiosampleName";
+              rr:datatype xsd:string
+              ]
+            ];
+           rr:predicateObjectMap [
+    		    rr:predicate improvit:hasBiosampleDonationDay;
+            rr:objectMap [
+  			     rml:reference "BiosampleDonationDay";
+             rr:datatype xsd:nonNegativeInteger
+            ];
+          ];
+          rr:predicateObjectMap [
+           rr:predicate improvit:hasBiosampleDonationMonth;
+           rr:objectMap [
+            rml:reference "BiosampleDonationMonth";
+            rr:datatype xsd:nonNegativeInteger
+           ];
+         ];
+         rr:predicateObjectMap [
+          rr:predicate improvit:hasBiosampleDonationYear;
+          rr:objectMap [
+           rml:reference "BiosampleDonationYear";
+           rr:datatype xsd:nonNegativeInteger
+          ];
+        ];
+         rr:predicateObjectMap [
+          rr:predicate improvit:hasBiosampleDayDescription;
+          rr:objectMap [
+           rml:reference "BiosampleDayDescription";
+           rr:datatype xsd:string #xsd:date
+          ];
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasBiosampleDayInformation;
+         rr:objectMap [
+          rml:reference "BiosampleDayInformation";
+          rr:datatype xsd:string #xsd:date
+         ];
+       ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasBiosampleDonationTime;
+         rr:objectMap [
+          rml:reference "BiosampleDonationTime";
+          rr:datatype xsd:nonNegativeInteger
+         ];
+       ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasBiosampleAmountUnit;
+         rr:objectMap [
+          rml:reference "BiosampleAmountUnit";
+          rr:datatype xsd:string
+         ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyName}";
+          ];
+        ].

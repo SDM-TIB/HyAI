@@ -1,0 +1,103 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<DonorInStudyTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+          rml:source "./files/Person.csv";
+          rml:referenceFormulation ql:CSV
+          ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+        rr:class improvit:Donor
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:participate;
+          rr:objectMap [
+          rr:parentTriplesMap <StudyTripleMap>;
+            rr:joinCondition[
+            rr:child "StudyID";
+            rr:parent "StudyID";
+            ];
+          ];
+          ].
+
+<StudyTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+          rml:source "./files/Study.csv";
+          rml:referenceFormulation ql:CSV
+          ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Study/{StudyID}";
+        rr:class improvit:Study
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+            rr:objectMap [
+            rml:reference "StudyName";
+            rr:datatype xsd:string
+            ];
+          ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyID;
+          rr:objectMap [
+          rml:reference "StudyID";
+          rr:datatype xsd:string
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyFullName;
+          rr:objectMap [
+          rml:reference "StudyFullName";
+          rr:datatype xsd:string
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyStartDate;
+          rr:objectMap [
+          rml:reference "StudyStartDate";
+          rr:datatype xsd:date
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyEndDate;
+          rr:objectMap [
+          rml:reference "StudyEndDate";
+          rr:datatype xsd:string
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyAim;
+        rr:objectMap [
+          rml:reference "StudyAim";
+          rr:datatype xsd:string
+          ];
+        ].
+
+<HepatitisBInfectionStudyTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+          rml:source "./files/Study.csv";
+          rml:referenceFormulation ql:CSV
+          ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/HepatitisBInfectionStudy/{StudyName}";
+        rr:class improvit:HepatitisBInfectionStudy
+        ];
+      rr:predicateObjectMap [
+        rr:predicate owl:sameAs;
+          rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyID}";
+          ]
+        ].

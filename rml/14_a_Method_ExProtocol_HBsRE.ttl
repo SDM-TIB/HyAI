@@ -1,0 +1,115 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<MethodTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/ExperimentalProtocol.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Method/{MethodName}";
+        rr:class improvit:Method
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasMethodName;
+          rr:objectMap [
+          rml:reference "MethodName";
+          rr:datatype xsd:string
+          ];
+        ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:hasStudyName;
+          rr:objectMap [
+            rr:template "http://www.project-improvit.de/Study/{StudyName}";
+            ]
+          ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:apply;
+          rr:objectMap [
+          rr:parentTriplesMap <ExperimentalProtocolTripleMap>;
+          ];
+        ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasSubMethod;
+        rr:objectMap [
+        rr:parentTriplesMap <SubMethodTripleMap>;
+        ];
+      ].
+
+<SubMethodTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/ExperimentalProtocol.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/SubMethod/{MethodName}-{SubMethodName}";
+        rr:class improvit:SubMethod
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasSubMethodName;
+          rr:objectMap [
+          rml:reference "SubMethodName";
+          rr:datatype xsd:string
+          ];
+        ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyName}";
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:describedBy;
+          rr:objectMap [
+          rr:parentTriplesMap <MethodTripleMap>;
+          ];
+        ].
+
+<ExperimentalProtocolinMethodTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/ExperimentalProtocol.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/ExperimentalProtocol/{ExpProtocolName}";
+        rr:class improvit:ExperimentalProtocol
+        ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:hasExpSampleName;
+          rr:objectMap [
+            rr:template "http://www.project-improvit.de/ExperimentalSample/{ExpSampleName}";
+          ];
+         ];
+         rr:predicateObjectMap [
+           rr:predicate improvit:hasStudyName;
+           rr:objectMap [
+             rr:template "http://www.project-improvit.de/Study/{StudyName}";
+             ];
+           ];
+         rr:predicateObjectMap [
+          rr:predicate improvit:hasExpProtocolName;
+          rr:objectMap [
+             rml:reference "ExpProtocolName";
+             rr:datatype xsd:string
+          ];
+         ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasExpProtocolSource;
+          rr:objectMap [
+          rml:reference "ExpProtocolSource";
+          rr:datatype xsd:string
+          ];
+      ].

@@ -1,0 +1,155 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<MedicalDrugOfPrescribeTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Intervention_MedicationTreatment.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+        rr:subjectMap [
+        rr:template "http://www.project-improvit.de/MedicalDrug/{PharmaceuticalPreparationName}";
+        rr:class improvit:MedicalDrug
+          ].
+
+<DisorderAndPrescribeTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Intervention_MedicationTreatment.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Disorder/{DisorderName}";
+        rr:class improvit:Disorder
+        ];
+        rr:predicateObjectMap[
+          rr:predicate improvit:prescriptionForDisorder;
+          rr:objectMap[
+           rr:parentTriplesMap <PrescribeTripleMap>;
+            rr:joinCondition [
+             rr:child "PersonID";
+             rr:parent "PersonID";
+             ];
+          ];
+        ].
+
+<PrescribeTripleMap>
+    a rr:TriplesMap;
+      rml:logicalSource [
+      rml:source "./files/Intervention_MedicationTreatment.csv";
+      rml:referenceFormulation ql:CSV
+      ];
+    rr:subjectMap [
+      rr:template "http://www.improvit.de/Prescribe/{PersonID}-{DisorderName}-{PharmaceuticalPreparationName}-{DrugIntakeStartMonth}-{DrugIntakeStartYear}-{DrugIntakeEndMonth}-{DrugIntakeEndYear}";
+      rr:class improvit:Prescribe
+      ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasDisorderName;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Disorder/{DisorderName}";
+          ]
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasPersonID;
+         rr:objectMap [
+          rr:template "http://www.project-improvit.de/Donor/{PersonID}"
+        ]
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyName}";
+          ]
+        ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasPharmaceuticalPreparationName;
+       rr:objectMap [
+       rr:template "http://www.project-improvit.de/MedicalDrug/{PharmaceuticalPreparationName}";
+       ]
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasDrugDosage;
+          rr:objectMap [
+          rml:reference "DrugDosage";
+          rr:datatype xsd:nonNegativeInteger
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasDrugDosageUnit;
+          rr:objectMap [
+          rml:reference "DrugDosageUnit";
+          rr:datatype xsd:string
+          ]
+        ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:hasDrugReportSource;
+            rr:objectMap [
+            rml:reference "DrugReportSource";
+            rr:datatype xsd:string
+            ]
+          ];
+        rr:predicateObjectMap [
+           rr:predicate improvit:hasDrugIntakeStartMonth;
+           rr:objectMap [
+             rml:reference "DrugIntakeStartMonth";
+              rr:datatype xsd:nonNegativeInteger
+             ]
+          ];
+          rr:predicateObjectMap [
+             rr:predicate improvit:hasDrugIntakeStartYear;
+             rr:objectMap [
+               rml:reference "DrugIntakeStartYear";
+                rr:datatype xsd:nonNegativeInteger
+               ]
+            ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:hasDrugIntakeEndMonth;
+          rr:objectMap [
+            rml:reference "DrugIntakeEndMonth";
+             rr:datatype xsd:nonNegativeInteger
+            ]
+          ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:hasDrugIntakeEndYear;
+        rr:objectMap [
+            rml:reference "DrugIntakeEndYear";
+            rr:datatype xsd:nonNegativeInteger
+       ]
+     ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasDrugReportSource;
+         rr:objectMap [
+             rml:reference "DrugReportSource";
+             rr:datatype xsd:string
+         ]
+       ];
+       rr:predicateObjectMap[
+         rr:predicate improvit:hasDrugReportDate;
+         rr:objectMap [
+             rml:reference "DrugReportDate";
+             rr:datatype xsd:nonNegativeInteger
+          ]
+       ];
+         rr:predicateObjectMap [
+          rr:predicate improvit:hasDrugInformationCollectionDate;
+          rr:objectMap [
+             rml:reference "DrugInformationCollectionDate";
+             rr:datatype xsd:date
+           ]
+         ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:prescribtionOfMedicalDrug;
+        rr:objectMap [
+          rr:parentTriplesMap <MedicalDrugTripleMap>;
+        ];
+      ].

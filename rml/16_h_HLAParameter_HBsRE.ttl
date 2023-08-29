@@ -1,0 +1,366 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<HLATypingAnalysisParameterTripleMap>
+        a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/HLA_Typing_Meta_Data.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/HLATypingAnalysisParameter/{ParameterName}";
+        rr:class improvit:HLATypingAnalysisParameter
+        ];
+      rr:predicateObjectMap [
+        rr:predicate owl:sameAs;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Parameter/{ParameterName}";
+        ]
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Study/{StudyName}";
+        ];
+      ].
+
+<ConsistOfTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/HLA_Typing_Meta_Data.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+        rr:subjectMap [
+        rr:template "http://www.project-improvit.de/ConsistOf/{ParameterName}-{LocusName}-{MeasurementCategorization}-{AlleleGroup}";
+        rr:class improvit:ConsistOf
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasLocusName;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/HLAGene/{LocusName}";
+        ]
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasParameterName;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/HLATypingAnalysisParameter/{ParameterName}";
+        ]
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasHLAGenotype;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/HLAGenotype/{Genotype}";
+        ];
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasGenotypeDescription;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/HLAGenotype/{GenotypeDescription}";
+        ];
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasHLAAlleleGroup;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/HLAAlleleGroup/{AlleleGroup}";
+        ]
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasMeasurementCategorization;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Measurement/{MeasurementCategorization}";
+        ]
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hLATypingConsistOf;
+        rr:objectMap [
+        rr:parentTriplesMap <HLATypingAnalysisParameterTripleMap>;
+        ];
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hLAAlleleConsistOf;
+        rr:objectMap [
+        rr:parentTriplesMap <HLAAlleleTripleMap>;
+        ];
+      ].
+
+<HLAAlleleTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/HLA_Typing_Meta_Data.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+        rr:subjectMap [
+        rr:template "http://www.project-improvit.de/HLAAllele/{ParameterName}-{MeasurementCategorization}-{MeasurementDescription}";
+        rr:class improvit:HLAAllele
+      ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasMeasurementDescription;
+      rr:objectMap [
+      rml:reference "MeasurementDescription";
+      rr:datatype xsd:string
+      ];
+    ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasMeasurementCategorization;
+      rr:objectMap [
+      rml:reference "MeasurementCategorization";
+      rr:datatype xsd:string
+      ];
+    ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasParameterName;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/HLATypingAnalysisParameter/{ParameterName}";
+      ];
+    ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasStudyName;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/Study/{StudyName}";
+      ];
+    ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasGenotype;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/HLAGenotype/{Genotype}";
+      ];
+    ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasAlleleID;
+      rr:objectMap [
+      rr:parentTriplesMap <AlleleIDTripleMap>;
+      ];
+    ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hLAGeneConsistOf;
+      rr:objectMap [
+      rr:parentTriplesMap <HLAGeneTripleMap>;
+      ];
+    ].
+
+<AlleleIDTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/HLA_Typing_Meta_Data.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/AlleleID/{HLAPrefix}-{Label}-{MeasurementCategorization}";
+        rr:class improvit:AlleleID
+        ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasMeasurementDescription;
+      rr:objectMap [
+      rml:reference "MeasurementDescription";
+      rr:datatype xsd:string
+      ];
+    ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasMeasurementCategorization;
+      rr:objectMap [
+      rml:reference "MeasurementCategorization";
+      rr:datatype xsd:string
+      ];
+      ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasHLAAlleleGroup;
+      rr:objectMap [
+      rml:reference "AlleleGroup";
+      rr:datatype xsd:string
+      ];
+      ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasHLAPrefix;
+        rr:objectMap [
+        rml:reference "HLAPrefix";
+        rr:datatype xsd:string
+        ];
+      ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasLabel;
+        rr:objectMap [
+        rml:reference "Label";
+        rr:datatype xsd:string
+        ];
+      ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasSpecificHLAProtein;
+        rr:objectMap [
+        rml:reference "SpecificHLAProtein";
+        rr:datatype xsd:string
+        ];
+    ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasSynonymousDNASubstitutionCodingRegion;
+        rr:objectMap [
+        rml:reference "SynonymousDNASubstitutionCodingRegion";
+        rr:datatype xsd:string
+        ];
+    ];
+  rr:predicateObjectMap [
+    rr:predicate improvit:hasDifferenceInNonCodingRegion;
+      rr:objectMap [
+      rml:reference "DifferenceInNonCodingRegion";
+      rr:datatype xsd:string
+      ];
+  ];
+  rr:predicateObjectMap [
+    rr:predicate improvit:hasChangesInExpression;
+      rr:objectMap [
+      rml:reference "ChangesInExpression";
+      rr:datatype xsd:string
+      ];
+  ].
+
+<HLAGeneTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/HLA_Typing_Meta_Data.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/HLAGene/{LocusName}";
+        rr:class improvit:HLAGene
+        ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasLocusName;
+        rr:objectMap [
+        rml:reference "LocusName";
+        rr:datatype xsd:string
+        ];
+      ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Study/{StudyName}";
+        ];
+    ];
+  rr:predicateObjectMap [
+    rr:predicate improvit:hasHLAClass;
+      rr:objectMap [
+      rml:reference "HLAClass";
+      rr:datatype xsd:string
+      ];
+      ];
+  rr:predicateObjectMap [
+    rr:predicate improvit:hasAnnotationCUI;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/Annotation/{HLAClassUMLSID}";
+      ]
+  ].
+
+<HLAClassITripleMap>
+    a rr:TriplesMap;
+      rml:logicalSource [
+      rml:source "./files/HLA_Typing_Meta_Data_ClassI.csv";
+      rml:referenceFormulation ql:CSV
+      ];
+    rr:subjectMap [
+      rr:template "http://www.project-improvit.de/HLAClassI/{LocusName}";
+      rr:class improvit:HLAClassI
+      ];
+    rr:predicateObjectMap [
+      rr:predicate owl:sameAs;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/HLAGene/{LocusName}";
+      ]
+      ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasHLAClass;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/HLAGene/{HLAClass}";
+        ]
+      ].
+
+<HLAClassIITripleMap>
+    a rr:TriplesMap;
+      rml:logicalSource [
+      rml:source "./files/HLA_Typing_Meta_Data_ClassII.csv";
+      rml:referenceFormulation ql:CSV
+      ];
+    rr:subjectMap [
+      rr:template "http://www.project-improvit.de/HLAClassII/{LocusName}";
+      rr:class improvit:HLAClassII
+      ];
+    rr:predicateObjectMap [
+      rr:predicate owl:sameAs;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/HLAGene/{LocusName}";
+        ]
+      ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasHLAClass;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/HLAGene/{HLAClass}";
+      ]
+      ].
+
+<PeptideTripleMap>
+      a rr:TriplesMap;
+      rml:logicalSource [
+      rml:source "./files/HLA_Typing_Meta_Data_Peptide.csv";
+      rml:referenceFormulation ql:CSV
+      ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Peptide/{HLAClass}-{CellName}";
+        rr:class improvit:Peptide
+        ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasHLAClass;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/HLAGene/{HLAClass}";
+      ];
+    ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasCellName;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/cell/{CellName}";
+      ];
+    ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hLAClassIpresents;
+      rr:objectMap [
+        rr:parentTriplesMap <HLAClassITripleMap>;
+        rr:joinCondition[
+        rr:child "HLAClass";
+        rr:parent "HLAClass";
+        ];
+      ];
+      ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hLAClassIIpresents;
+      rr:objectMap [
+        rr:parentTriplesMap <HLAClassIITripleMap>;
+        rr:joinCondition[
+        rr:child "HLAClass";
+        rr:parent "HLAClass";
+        ];
+    ];
+    ].
+
+<CellTripleMap>
+    a rr:TriplesMap;
+      rml:logicalSource [
+      rml:source "./files/HLA_Typing_Meta_Data_Peptide.csv";
+      rml:referenceFormulation ql:CSV
+      ];
+    rr:subjectMap [
+      rr:template "http://www.project-improvit.de/Cell/{CellName}";
+      rr:class improvit:Cell;
+    ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:presentedPeptide;
+      rr:objectMap [
+        rr:parentTriplesMap <PeptideTripleMap>;
+          ];
+        ].

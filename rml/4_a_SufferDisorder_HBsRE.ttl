@@ -1,0 +1,188 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<MedicalDrugForDisorderTripleMap>
+ a rr:TriplesMap;
+       rml:logicalSource [
+         rml:source "./files/Intervention_MedicationTreatment.csv" ;
+         rml:referenceFormulation ql:CSV
+         ];
+       rr:subjectMap [
+         rr:template "http://www.project-improvit.de/MedicalDrug/{PharmaceuticalPreparationName}";
+         rr:class improvit:MedicalDrug
+         ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:treat;
+          rr:objectMap [
+            rr:parentTriplesMap <DisorderTripleMap>;
+            rr:joinCondition[
+            rr:child "DisorderUMLSID";
+            rr:parent "DisorderUMLSID";
+             ];
+          ];
+        ].
+
+  <DisorderTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source ".//files/Disorder_Suffer.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Disorder/{DisorderName}";
+        rr:class improvit:Disorder
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasDisorderName;
+         rr:objectMap [
+          rml:reference "DisorderName";
+          rr:datatype xsd:string
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyName}";
+          ]
+        ];
+       rr:predicateObjectMap [
+         rr:predicate improvit:hasPersonID;
+         rr:objectMap [
+         rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+         ]
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasAnnotationCUI;
+         rr:objectMap [
+          rr:template "http://www.project-improvit.de/Annotation/{DisorderUMLSID}";
+         ];
+       ].
+
+<DonorSufferingTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Disorder_Suffer.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+        rr:class improvit:Donor
+        ];
+        rr:predicateObjectMap [
+      rr:predicate improvit:sufferingPerson;
+      rr:objectMap [
+        rr:parentTriplesMap <SufferTripleMap>;
+        rr:joinCondition[
+          rr:child "PersonID";
+          rr:parent "PersonID";
+           ];
+        ];
+    ].
+
+<SufferTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Disorder_Suffer.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Suffer/{PersonID}-{DisorderName}-{DisorderReportDay}-{DisorderReportMonth}-{DisorderReportYear}";
+        rr:class improvit:Suffer
+        ];
+      rr:predicateObjectMap [
+         rr:predicate improvit:hasPersonID;
+         rr:objectMap [
+          rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+        ]
+      ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasDisorderName;
+       rr:objectMap [
+        rr:template "http://www.project-improvit.de/Disorder/{DisorderName}";
+        rr:datatype xsd:string
+        ]
+            ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasBiosampleDayDescription;
+         rr:objectMap [
+          rml:reference  "BiosampleDayDescription";
+          rr:datatype xsd:string
+          ]
+              ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:hasDisorderCurrentStatus;
+          rr:objectMap [
+          rml:reference "DisorderCurrentStatus";
+          rr:datatype xsd:string
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasDisorderReportSource;
+          rr:objectMap [
+          rml:reference "DisorderReportSource";
+          rr:datatype xsd:string
+          ]
+        ];
+          rr:predicateObjectMap [
+         rr:predicate improvit:hasDisorderReportDay;
+         rr:objectMap [
+          rml:reference "DisorderReportDay";
+          rr:datatype xsd:nonNegativeInteger
+         ]
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasDisorderReportMonth;
+         rr:objectMap [
+          rml:reference "DisorderReportMonth";
+          rr:datatype xsd:nonNegativeInteger
+         ]
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasDisorderReportYear;
+         rr:objectMap [
+          rml:reference "DisorderReportYear";
+          rr:datatype xsd:nonNegativeInteger
+         ]
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasDisorderReportSource;
+         rr:objectMap [
+          rml:reference "DisorderReportSource";
+          rr:datatype xsd:string
+            ]
+         ];
+         rr:predicateObjectMap [
+          rr:predicate improvit:hasFunctionalCure;
+           rr:objectMap [
+           rr:template "http://www.project-improvit.de/FunctionalCure/{FunctionalCureLabel}";
+          ];
+         ];
+          rr:predicateObjectMap [
+           rr:predicate improvit:hasDisorderInformationDate;
+           rr:objectMap [
+            rml:reference "DisorderInformationDate";
+            rr:datatype xsd:nonNegativeInteger
+             ];
+           ];
+           rr:predicateObjectMap [
+            rr:predicate improvit:hasStudyName;
+            rr:objectMap [
+             rr:template "http://www.project-improvit.de/Study/{StudyName}";
+           ];
+         ];
+           rr:predicateObjectMap [
+            rr:predicate improvit:sufferFromDisorder;
+            rr:objectMap [
+             rr:parentTriplesMap <DisorderTripleMap>;
+             ];
+          ].

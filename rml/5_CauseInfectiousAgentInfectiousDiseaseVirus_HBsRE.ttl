@@ -1,0 +1,140 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<InfectiousAgentTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Disorder_Suffer.csv" ;
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/InfectiousAgent/{InfectiousAgentName}";
+        rr:class improvit:InfectiousAgent
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasAnnotationCUI;
+          rr:objectMap [
+          rr:template "http://www.project-improvit.de/Annotation/{InfectiousAgentUMLSID}";
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasInfectiousAgentName;
+          rr:objectMap [
+          rml:reference "InfectiousAgentName";
+          rr:datatype xsd:string
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:cause;
+          rr:objectMap [
+          rr:parentTriplesMap <InfectiousDiseaseTripleMap>;
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:posses;
+          rr:objectMap[
+          rr:parentTriplesMap <AntigenTripleMap>;
+            rr:joinCondition[
+            rr:child "InfectiousAgentName";
+            rr:parent "InfectiousAgentName";
+            ];
+          ];
+        ].
+
+<AntigenTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Antigen_InfectiousAgents.csv" ;
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Antigen/{AntigenName}";
+        rr:class improvit:Antigen
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasAnnotationCUI;
+          rr:objectMap [
+          rr:template "http://www.project-improvit.de/Annotation/{AntigenUMLSID}";
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasAntigenName;
+          rr:objectMap [
+          rml:reference "AntigenName";
+          rr:datatype xsd:string
+          ];
+        ].
+
+<InfectiousDiseaseTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Disorder_Suffer.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/InfectiousDisease/{DisorderName}";
+        rr:class improvit:InfectiousDisease
+        ];
+    rr:predicateObjectMap [
+        rr:predicate owl:sameAs;
+          rr:objectMap [
+          rr:template "http://www.project-improvit.de/Disorder/{DisorderName}";
+          ];
+      ].
+
+<VirusTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Disorder_Suffer.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Virus/{InfectiousAgentName}";
+        rr:class improvit:Virus
+        ];
+      rr:predicateObjectMap [
+        rr:predicate owl:sameAs;
+          rr:objectMap [
+          rr:template "http://www.project-improvit.de/InfectiousAgent/{InfectiousAgentName}";
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:infect;
+          rr:objectMap [
+          rr:parentTriplesMap <OrganTripleMap>;
+          ];
+        ].
+
+<OrganTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Disorder_Suffer.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Organ/{OrganName}";
+        rr:class improvit:Organ
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasAnnotationCUI;
+          rr:objectMap [
+          rr:template "http://www.project-improvit.de/Annotation/{OrganUMLSID}";
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasOrganName;
+          rr:objectMap [
+          rml:reference "OrganName";
+          rr:datatype xsd:string
+          ];
+        ].

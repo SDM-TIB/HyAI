@@ -1,0 +1,65 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<CellAnalysisParameterTripleMap>
+      a rr:TriplesMap;
+      rml:logicalSource [
+        rml:source "./files/FlowCytometery_Parameters.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+       rr:template "http://www.project-improvit.de/CellAnalysisParameter/{ParameterName}";
+       rr:class improvit:CellAnalysisParameter
+       ];
+     rr:predicateObjectMap [
+       rr:predicate owl:sameAs;
+       rr:objectMap [
+         rr:template "http://www.project-improvit.de/Parameter/{ParameterName}"
+        ];
+       ];
+       rr:predicateObjectMap [
+         rr:predicate improvit:hasStudyName;
+         rr:objectMap [
+           rr:template "http://www.project-improvit.de/Study/{StudyName}";
+           ];
+         ];
+     rr:predicateObjectMap [
+       rr:predicate improvit:categorize;
+       rr:objectMap [
+         rr:template "http://www.project-improvit.de/Cell/{CellName}"
+         ];
+        ].
+
+<CellTripleMap>
+     a rr:TriplesMap;
+        rml:logicalSource [
+         rml:source "./files/FlowCytometery_Parameters.csv";
+         rml:referenceFormulation ql:CSv
+          ];
+       rr:subjectMap [
+         rr:template "http://www.project-improvit.de/Cell/{CellName}";
+         rr:class improvit:Cell;
+       ];
+       rr:predicateObjectMap [
+       rr:predicate improvit:hasStudyName;
+       rr:objectMap [
+         rr:template "http://www.project-improvit.de/Study/{StudyName}";
+        ];
+       ];
+     rr:predicateObjectMap [
+       rr:predicate improvit:hasCellName;
+       rr:objectMap [
+        rml:reference "CellName";
+        rr:datatype xsd:string
+        ];
+       ].

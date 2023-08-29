@@ -1,0 +1,121 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<ExperimentalProtocoltoParameterDefinebyTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/All_Parameters_Measurement.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/ExperimentalProtocol/{ExpProtocolName}";
+        rr:class improvit:ExperimentalProtocol
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:parameterDefineByExperimentalProtocol;
+        rr:objectMap [
+         rr:parentTriplesMap <DefineTripleMap>;
+         ];
+     ].
+
+<DefineTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/All_Parameters_Measurement.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Define/{ExpProtocolName}-{ParameterName}-{NormalRangeOfValue}-{NormalRangeValueUnit}";
+        rr:class improvit:Define
+        ];
+            rr:predicateObjectMap [
+              rr:predicate improvit:hasParameterName;
+                rr:objectMap [
+                rml:reference "ParameterName";
+                rr:datatype xsd:string
+                ];
+            ];
+            rr:predicateObjectMap [
+               rr:predicate improvit:hasExpProtocolName;
+               rr:objectMap [
+               rr:template "http://www.project-improvit.de/ExperimentalProtocol/{ExpProtocolName}";
+               ]
+             ];
+             rr:predicateObjectMap [
+               rr:predicate improvit:hasStudyName;
+               rr:objectMap [
+                 rr:template "http://www.project-improvit.de/Study/{StudyName}";
+                 ]
+               ];
+           rr:predicateObjectMap [
+            rr:predicate improvit:hasNormalRangeOfValue;
+            rr:objectMap [
+             rml:reference "NormalRangeOfValue";
+             rr:datatype xsd:string
+             ]
+           ];
+           rr:predicateObjectMap [
+            rr:predicate improvit:hasNormalRangeValueUnit;
+            rr:objectMap [
+             rml:reference "NormalRangeValueUnit";
+             rr:datatype xsd:string
+             ]
+           ];
+           rr:predicateObjectMap [
+            rr:predicate improvit:definesForParameter;
+            rr:objectMap [
+              rr:parentTriplesMap <ParameterTripleMap>;
+            ];
+          ].
+
+<ParameterTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/All_Parameters_Measurement.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Parameter/{ParameterName}";
+        rr:class improvit:Parameter
+        ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:hasPersonID;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+        ]
+      ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:hasExpProtocolName;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/ExperimentalProtocol/{ExpProtocolName}";
+        ]
+        ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Study/{StudyName}";
+        ]
+        ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasParameterName;
+       rr:objectMap [
+        rml:reference "ParameterName";
+        rr:datatype xsd:string
+        ]
+      ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasAnnotationCUI;
+       rr:objectMap [
+        rr:template "http://www.project-improvit.de/Annotation/{ParameterUMLSID}";
+       ];
+     ].

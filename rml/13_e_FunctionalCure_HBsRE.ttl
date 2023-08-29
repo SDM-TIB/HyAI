@@ -1,0 +1,140 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<MeasurementDescriptionToReflectFunctionalCureTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/HBsAgLoss_FunctionalCure.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/MeasurementDescription/{PersonID}-{ParameterName}-{MeasurementDescription}-{BiosampleDayDescription}";
+       rr:class improvit:MeasurementDescription
+        ];
+    rr:predicateObjectMap [
+     rr:predicate improvit:measurementReflectFunctionalCure;
+     rr:objectMap [
+      rr:parentTriplesMap <ReflectTripleMap>;
+      ];
+    ].
+
+<ReflectTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/HBsAgLoss_FunctionalCure.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Reflect/{PersonID}-{ParameterName}-{BiosampleDayDescription}-{MeasurementDescription}-{FunctionalCureLabel}";
+        rr:class improvit:Reflect
+        ];
+       rr:predicateObjectMap [
+         rr:predicate improvit:hasPersonID;
+         rr:objectMap [
+          rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyName}";
+          ]
+        ];
+       rr:predicateObjectMap [
+        rr:predicate improvit:hasParameterName;
+        rr:objectMap [
+         rr:template "http://www.project-improvit.de/AntigenTiterParameter/{ParameterName}";
+        ];
+       ];
+       rr:predicateObjectMap [
+       rr:predicate improvit:hasMeasurementDescription;
+       rr:objectMap [
+       rml:reference "MeasurementDescription";
+       rr:datatype xsd:string
+       ];
+       ];
+       rr:predicateObjectMap [
+       rr:predicate improvit:hasBiosampleDayDescription;
+       rr:objectMap [
+       rml:reference "BiosampleDayDescription";
+       rr:datatype xsd:string
+       ];
+       ];
+       rr:predicateObjectMap [
+        rr:predicate improvit:hasFunctionalCureLabel;
+        rr:objectMap [
+         rr:template "http://www.project-improvit.de/FunctionalCure/{FunctionalCureLabel}";
+        ];
+       ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:reflectFunctionalCure;
+         rr:objectMap [
+         rr:parentTriplesMap <FunctionalCureTripleMap>;
+           ];
+        ].
+
+<FunctionalCureTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/HBsAgLoss_FunctionalCure.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/FunctionalCure/{FunctionalCureLabel}";
+        rr:class improvit:FunctionalCure
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasFunctionalCureLabel;
+        rr:objectMap [
+        rml:reference "FunctionalCureLabel";
+        rr:datatype xsd:string
+        ];
+      ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasImmuneResponse;
+       rr:objectMap [
+        rr:template "http://www.project-improvit.de/ImmuneResponse/{ImmuneResponseStatus}";
+      ];
+     ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasPersonID;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+        ];
+      ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasMeasurementDescription;
+      rr:objectMap [
+      rml:reference "MeasurementDescription";
+      rr:datatype xsd:string
+      ];
+      ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasBiosampleDayDescription;
+      rr:objectMap [
+      rml:reference "BiosampleDayDescription";
+      rr:datatype xsd:string
+      ];
+      ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasParameterName;
+       rr:objectMap [
+        rr:template "http://www.project-improvit.de/Parameter/{ParameterName}";
+       ];
+       ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Study/{StudyName}";
+      ];
+      ].

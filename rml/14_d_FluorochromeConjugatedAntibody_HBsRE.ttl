@@ -1,0 +1,96 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<FluorochromeConjugatedAntibodyTripleMap>
+  a rr:TriplesMap;
+       rml:logicalSource [
+            rml:source "./files/Antibody.csv";
+              rml:referenceFormulation ql:CSV
+                  ];
+       rr:subjectMap [
+          rr:template "http://www.project-improvit.de/FluorochromeConjugatedAntibody/{ProtocolReagentName}";
+            rr:class improvit:FluorochromeConjugatedAntibody
+           ];
+         rr:predicateObjectMap [
+          rr:predicate owl:sameAs;
+           rr:objectMap [
+            rr:template "http://www.project-improvit.de/ProtocolReagent/{ProtocolReagentName}";
+            ]
+         ];
+       rr:predicateObjectMap [
+          rr:predicate improvit:hasClone;
+           rr:objectMap [
+            rml:reference "Clone";
+           rr:datatype xsd:string
+                        ];
+                   ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+        rr:template "http://www.project-improvit.de/Study/{StudyName}";
+        ]
+        ];
+       rr:predicateObjectMap [
+        rr:predicate improvit:hasFluorophore;
+          rr:objectMap [
+          rml:reference "Fluorophore";
+          rr:datatype xsd:string
+           ];
+       ];
+     rr:predicateObjectMap [
+       rr:predicate improvit:contain;
+           rr:objectMap [
+            rr:parentTriplesMap <AntibodyTripleMap>;
+          ];
+  ].
+
+<AntibodyTripleMap>
+    a rr:TriplesMap;
+    rml:logicalSource [
+     rml:source "./files/Antibody.csv";
+     rml:referenceFormulation ql:CSV
+      ];
+      rr:subjectMap [
+      rr:template "http://www.project-improvit.de/Antibody/{AntibodyName}";
+      rr:class improvit:Antibody
+    ];
+   rr:predicateObjectMap [
+     rr:predicate improvit:hasAntibodyName;
+     rr:objectMap [
+       rml:reference "AntibodyName";
+       rr:datatype xsd:string
+            ];
+          ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasStudyName;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/Study/{StudyName}";
+      ]
+      ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:binds;
+       rr:objectMap [
+          rr:parentTriplesMap <MoleculeTripleMap>;
+      ];
+    ].
+
+<MoleculeTripleMap>
+    a rr:TriplesMap;
+    rml:logicalSource [
+     rml:source "./files/Antibody.csv";
+     rml:referenceFormulation ql:CSV
+          ];
+      rr:subjectMap [
+      rr:template "http://www.project-improvit.de/Molecule/{MoleculeName}";
+      rr:class improvit:Molecule
+     ].

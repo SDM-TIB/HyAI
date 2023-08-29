@@ -1,0 +1,304 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<ExperimentalObservationToLeadstoResultsTripleMap>
+      a rr:TriplesMap;
+          rml:logicalSource [
+          rml:source "./files/All_Parameters_Measurement.csv";
+          rml:referenceFormulation ql:CSV
+          ];
+      rr:subjectMap [
+          rr:template "http://www.project-improvit.de/ExperimentalObservation/{ParameterName}-{ExpProtocolName}-{ExpObservation}";
+          rr:class improvit:ExperimentalObservation
+          ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:expObservationLeadsToResults;
+       rr:objectMap [
+        rr:parentTriplesMap <LeadsToResultsTripleMap>;
+        ];
+      ].
+
+<ParameterLeadsToResultsTripleMap>
+      a rr:TriplesMap;
+          rml:logicalSource [
+          rml:source "./files/All_Parameters_Measurement.csv";
+          rml:referenceFormulation ql:CSV
+          ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Parameter/{ParameterName}";
+        rr:class improvit:Parameter
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:parameterLeadsToResults;
+         rr:objectMap [
+           rr:parentTriplesMap <LeadsToResultsTripleMap>;
+           ];
+      ].
+
+<LeadsToResultsTripleMap>
+a rr:TriplesMap;
+     rml:logicalSource [
+       rml:source "./files/All_Parameters_Measurement.csv";
+       rml:referenceFormulation ql:CSV
+       ];
+     rr:subjectMap [
+     rr:template "http://www.project-improvit.de/LeadsToResults/{PersonID}-{ParameterName}-{ExpProtocolName}-{BiosampleDayDescription}-{MeasurementCategorization}-{MeasurementDescription}";#UNK in our study and that conflict with building subject key -{ResultsTimeStampDay}-{ResultsTimeStampMonth}-{ResultsTimeStampYear}-{ResultsTimeStampHour}-{ResultsTimeStampMin}-{ResultsTimeStampSec}
+      rr:class improvit:LeadsToResults
+     ];
+        rr:predicateObjectMap [
+            rr:predicate improvit:hasPersonID;
+            rr:objectMap [
+             rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+              ]
+           ];
+           rr:predicateObjectMap [
+             rr:predicate improvit:hasExpProtocolName;
+             rr:objectMap [
+              rr:template "http://www.project-improvit.de/ExperimentalProtocol/{ExpProtocolName}";
+             ];
+           ];
+         rr:predicateObjectMap [
+           rr:predicate improvit:hasParameterName;
+           rr:objectMap [
+            rr:template "http://www.project-improvit.de/Parameter/{ParameterName}";
+           ];
+         ];
+         rr:predicateObjectMap [
+           rr:predicate improvit:hasBiosampleDayDescription;
+             rr:objectMap [
+             rml:reference "BiosampleDayDescription";
+             rr:datatype xsd:string
+             ];
+             ];
+          rr:predicateObjectMap [
+            rr:predicate improvit:hasStudyName;
+            rr:objectMap [
+              rr:template "http://www.project-improvit.de/Study/{StudyName}";
+              ]
+            ];
+          rr:predicateObjectMap [
+            rr:predicate improvit:hasMeasurementDescription;
+              rr:objectMap [
+              rml:reference "MeasurementDescription";
+              rr:datatype xsd:string
+              ];
+            ];
+          rr:predicateObjectMap [
+            rr:predicate improvit:hasMeasurementCategorization;
+              rr:objectMap [
+              rml:reference "MeasurementCategorization";
+              rr:datatype xsd:string
+              ];
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasResultsTimeStampDay;
+         rr:objectMap [
+          rml:reference "ResultsTimeStampDay";
+          rr:datatype xsd:nonNegativeInteger
+          ]
+        ];
+         rr:predicateObjectMap [
+          rr:predicate improvit:hasResultsTimeStampMonth;
+          rr:objectMap [
+           rml:reference "ResultsTimeStampMonth";
+           rr:datatype xsd:nonNegativeInteger
+           ]
+         ];
+         rr:predicateObjectMap [
+          rr:predicate improvit:hasResultsTimeStampYear;
+          rr:objectMap [
+           rml:reference "ResultsTimeStampYear";
+           rr:datatype xsd:nonNegativeInteger
+           ]
+         ];
+         rr:predicateObjectMap [
+        rr:predicate improvit:measurementLeadsToResults;
+        rr:objectMap [
+         rr:parentTriplesMap <MeasurementTripleMap>;
+         ];
+         ].
+
+<MeasurementTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/All_Parameters_Measurement.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+      rr:template "http://www.project-improvit.de/Measurement/{PersonID}-{ParameterName}-{MeasurementValueUnit}-{MeasurementCategorization}-{MeasurementDescription}-{ExpProtocolName}-{BiosampleDayDescription}";
+      rr:class improvit:Measurement
+        ];
+        rr:predicateObjectMap [
+       rr:predicate improvit:hasPersonID;
+       rr:objectMap [
+         rr:template "http://www.project-improvit.de/Donor/{PersonID}"
+       ]
+     ];
+     rr:predicateObjectMap [
+       rr:predicate improvit:hasExpProtocolName;
+       rr:objectMap [
+        rr:template "http://www.project-improvit.de/ExperimentalProtocol/{ExpProtocolName}";
+       ];
+     ];
+     rr:predicateObjectMap [
+       rr:predicate improvit:hasBiosampleDayDescription;
+         rr:objectMap [
+         rml:reference "BiosampleDayDescription";
+         rr:datatype xsd:string
+         ];
+    ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasBiosampleDonationTime;
+        rr:objectMap [
+        rml:reference "BiosampleDonationTime";
+        rr:datatype xsd:string
+        ];
+   ];
+   rr:predicateObjectMap [
+     rr:predicate improvit:hasBiosampleDonationTime;
+       rr:objectMap [
+       rml:reference "BiosampleDonationTime";
+       rr:datatype xsd:string
+       ];
+  ];
+     rr:predicateObjectMap [
+       rr:predicate improvit:hasImmuneResponse;
+         rr:objectMap [
+         rml:reference "ImmuneResponseStatus";
+         rr:datatype xsd:string
+         ];
+     ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasFunctionalCureLabel;
+         rr:objectMap [
+         rml:reference "FunctionalCureLabel";
+         rr:datatype xsd:string
+         ];
+    ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasResultsTimeStampDay;
+      rr:objectMap [
+      rml:reference "ResultsTimeStampDay";
+      rr:datatype xsd:nonNegativeInteger
+      ];
+      ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasResultsTimeStampMonth;
+      rr:objectMap [
+      rml:reference "ResultsTimeStampMonth";
+      rr:datatype xsd:nonNegativeInteger
+      ];
+      ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasResultsTimeStampYear;
+      rr:objectMap [
+      rml:reference "ResultsTimeStampYear";
+      rr:datatype xsd:nonNegativeInteger
+      ];
+      ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasMeasurementCategorization;
+      rr:objectMap [
+      rml:reference "MeasurementCategorization";
+      rr:datatype xsd:string
+      ];
+      ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasMeasurementDescription;
+      rr:objectMap [
+      rml:reference "MeasurementDescription";
+      rr:datatype xsd:string
+      ];
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasMeasurementValue;
+        rr:objectMap [
+         rml:reference "MeasurementValue";
+         rr:datatype xsd:decimal
+         ];
+        ];
+        rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyName}";
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasMeasurementValueUnit;
+        rr:objectMap [
+         rml:reference "MeasurementValueUnit";
+         rr:datatype xsd:string
+         ];
+        ];
+     rr:predicateObjectMap [
+      rr:predicate improvit:hasParameterName;
+      rr:objectMap [
+       rr:template "http://www.project-improvit.de/Parameter/{ParameterName}";
+      ];
+      ];
+     rr:predicateObjectMap [
+     rr:predicate improvit:hasNormalRangeOfValue;
+     rr:objectMap [
+      rml:reference "NormalRangeOfValue";
+      rr:datatype xsd:string
+      ];
+      ];
+     rr:predicateObjectMap [
+      rr:predicate improvit:hasClinicalDecision;
+      rr:objectMap [
+       rr:parentTriplesMap <MeasurementDescriptionTripleMap>;
+       ];
+      ].
+
+<MeasurementDescriptionTripleMap>
+     a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./files/All_Parameters_Measurement.csv";
+     rml:referenceFormulation ql:CSV
+     ];
+     rr:subjectMap [
+      rr:template "http://www.project-improvit.de/MeasurementDescription/{PersonID}-{ParameterName}-{BiosampleDayDescription}-{MeasurementDescription}";
+      rr:class improvit:MeasurementDescription
+       ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasPersonID;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+      ];
+    ];
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementDescription;
+    rr:objectMap [
+    rml:reference "MeasurementDescription";
+    rr:datatype xsd:string
+    ];
+    ];
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:string
+    ];
+    ];
+    rr:predicateObjectMap [
+     rr:predicate improvit:hasParameterName;
+     rr:objectMap [
+      rr:template "http://www.project-improvit.de/Parameter/{ParameterName}";
+     ]
+     ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasStudyName;
+      rr:objectMap [
+      rr:template "http://www.project-improvit.de/Study/{StudyName}";
+    ];
+    ].

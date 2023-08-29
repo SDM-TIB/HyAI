@@ -1,0 +1,120 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<DonorToInterventionTripleMap>
+    a rr:TriplesMap;
+      rml:logicalSource [
+      rml:source "./files/Person.csv";
+      rml:referenceFormulation ql:CSV
+      ];
+    rr:subjectMap [
+      rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+      rr:class improvit:Donor
+      ];
+    rr:predicateObjectMap [
+        rr:predicate improvit:receive;
+          rr:objectMap[
+          rr:parentTriplesMap <InterventionTripleMap>;
+          rr:joinCondition [
+          rr:child "PersonID";
+          rr:parent "PersonID";
+          ];
+        ];
+      ].
+
+<InterventionTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Intervention_MedicationTreatment.csv" ;
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Intervention/{PersonID}-{InterventionLabel}-{InterventionDay}-{InterventionMonth}-{InterventionYear}-{InterventionNumber}";
+        rr:class improvit:Intervention
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasPersonID;
+          rr:objectMap [
+          rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+          ]
+        ];
+      rr:predicateObjectMap [
+         rr:predicate improvit:hasStudyName;
+         rr:objectMap [
+           rr:template "http://www.project-improvit.de/Study/{StudyName}";
+           ]
+         ];
+         rr:predicateObjectMap [
+          rr:predicate improvit:hasInterventionDay;
+          rr:objectMap [
+          rml:reference "InterventionDay";
+          rr:datatype xsd:nonNegativeInteger
+           ];
+         ];
+       rr:predicateObjectMap [
+          rr:predicate improvit:hasInterventionMonth;
+          rr:objectMap [
+          rml:reference "InterventionMonth";
+          rr:datatype xsd:nonNegativeInteger
+           ];
+         ];
+         rr:predicateObjectMap [
+            rr:predicate improvit:hasInterventionYear;
+            rr:objectMap [
+            rml:reference "InterventionYear";
+            rr:datatype xsd:nonNegativeInteger
+             ];
+           ];
+         rr:predicateObjectMap [
+           rr:predicate improvit:hasInterventionNumber;
+           rr:objectMap [
+            rml:reference "InterventionNumber";
+            rr:datatype xsd:nonNegativeInteger
+            ];
+           ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasInterventionType;
+         rr:objectMap [
+           rr:template "http://www.project-improvit.de/InterventionType/{InterventionLabel}";
+           ];
+          ].
+
+<InterventionTypeTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Intervention_MedicationTreatment.csv" ;
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/InterventionType/{InterventionLabel}";
+        rr:class improvit:InterventionType
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasInterventionLabel;
+          rr:objectMap [
+          rml:reference "InterventionLabel";
+          rr:datatype xsd:string
+          ];
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyName}";
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasAnnotationCUI;
+          rr:objectMap [
+          rr:template "http://www.project-improvit.de/Annotation/{InterventionUMLSID}";
+          ];
+        ].

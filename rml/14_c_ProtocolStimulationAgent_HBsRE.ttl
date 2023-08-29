@@ -1,0 +1,162 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<ProtocolStimulationAgentTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+      rml:source "./files/ProtocolStimulationAgent.csv";
+      rml:referenceFormulation ql:CSV
+          ];
+     rr:subjectMap [
+        rr:template "http://www.project-improvit.de/ProtocolStimulationAgent/{ProtocolReagentName}";
+          rr:class improvit:ProtocolStimulationAgent
+         ];
+       rr:predicateObjectMap [
+        rr:predicate owl:sameAs;
+         rr:objectMap [
+          rr:template "http://www.project-improvit.de/ProtocolReagent/{ProtocolReagentName}";
+          ]
+       ];
+         rr:predicateObjectMap [
+         rr:predicate improvit:peptidePoolOfStimulationAgent;
+           rr:objectMap [
+         rr:parentTriplesMap <PeptidePoolTripleMap>;
+            ];
+       ];
+       rr:predicateObjectMap [
+         rr:predicate improvit:hasStudyName;
+         rr:objectMap [
+           rr:template "http://www.project-improvit.de/Study/{StudyName}";
+           ]
+         ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:peptideNumberOfStimulationAgent;
+         rr:objectMap [
+         rr:parentTriplesMap <PeptideNumberTripleMap>;
+            ];
+        ];
+       rr:predicateObjectMap [
+        rr:predicate improvit:aminoAcidSequenceOfStimulationAgent;
+          rr:objectMap [
+          rr:parentTriplesMap <AminoAcidSequenceTripleMap>;
+             ];
+         ].
+
+<PeptidePoolTripleMap>
+   a rr:TriplesMap;
+  rml:logicalSource [
+   rml:source "./files/ProtocolStimulationAgent.csv";
+     rml:referenceFormulation ql:CSV
+         ];
+    rr:subjectMap [
+       rr:template "http://www.project-improvit.de/PeptidePool/{ProtocolReagentName}-{PeptidePool}";
+         rr:class improvit:PeptidePool
+        ];
+    rr:predicateObjectMap [
+       rr:predicate improvit:hasProtocolReagentName;
+       rr:objectMap [
+        rr:template "http://www.project-improvit.de/ProtocolReagent/{ProtocolReagentName}";
+        ]
+       ];
+     rr:predicateObjectMap [
+       rr:predicate improvit:hasStudyName;
+       rr:objectMap [
+         rr:template "http://www.project-improvit.de/Study/{StudyName}";
+         ]
+       ];
+     rr:predicateObjectMap [
+     rr:predicate improvit:hasPeptidePoolName;
+      rr:objectMap [
+      rml:reference "PeptidePool";
+      rr:datatype xsd:string
+       ];
+  ].
+
+<PeptideNumberTripleMap>
+  a rr:TriplesMap;
+   rml:logicalSource [
+  rml:source "./files/ProtocolStimulationAgent.csv";
+    rml:referenceFormulation ql:CSV
+        ];
+   rr:subjectMap [
+      rr:template "http://www.project-improvit.de/PeptideNumber/{ProtocolReagentName}-{PeptidePool}-{PeptideNumber}";
+      rr:class improvit:PeptideNumber
+     ];
+   rr:predicateObjectMap [
+      rr:predicate improvit:hasPeptidePoolName;
+      rr:objectMap [
+       rr:template "http://www.project-improvit.de/PeptidePool/{PeptidePool}";
+       ]
+      ];
+    rr:predicateObjectMap [
+       rr:predicate improvit:hasProtocolReagentName;
+       rr:objectMap [
+        rr:template "http://www.project-improvit.de/ProtocolReagent/{ProtocolReagentName}";
+        ]
+       ];
+     rr:predicateObjectMap [
+       rr:predicate improvit:hasStudyName;
+       rr:objectMap [
+         rr:template "http://www.project-improvit.de/Study/{StudyName}";
+         ]
+       ];
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasPeptideNumber;
+     rr:objectMap [
+     rml:reference "PeptideNumber";
+    rr:datatype xsd:string
+    ];
+    ].
+
+<AminoAcidSequenceTripleMap>
+   a rr:TriplesMap;
+   rml:logicalSource [
+    rml:source "./files/ProtocolStimulationAgent.csv";
+      rml:referenceFormulation ql:CSV
+          ];
+
+   rr:subjectMap [
+  rr:template "http://www.project-improvit.de/AminoAcidSequence/{ProtocolReagentName}-{PeptidePool}-{PeptideNumber}-{AminoacidSequence}";
+    rr:class improvit:AminoAcidSequence
+   ];
+   rr:predicateObjectMap [
+    rr:predicate improvit:hasPeptidePoolName;
+    rr:objectMap [
+     rr:template "http://www.project-improvit.de/PeptidePool/{PeptidePool}";
+     ]
+    ];
+  rr:predicateObjectMap [
+    rr:predicate improvit:hasStudyName;
+    rr:objectMap [
+      rr:template "http://www.project-improvit.de/Study/{StudyName}";
+      ]
+    ];
+  rr:predicateObjectMap [
+     rr:predicate improvit:hasPeptideNumber;
+     rr:objectMap [
+      rr:template "http://www.project-improvit.de/PeptideNumber/{PeptideNumber}";
+      ]
+     ];
+   rr:predicateObjectMap [
+      rr:predicate improvit:hasProtocolReagentName;
+      rr:objectMap [
+       rr:template "http://www.project-improvit.de/ProtocolReagent/{ProtocolReagentName}";
+       ]
+      ];
+     rr:predicateObjectMap [
+   rr:predicate improvit:hasAminoAcidSequenceName;
+     rr:objectMap [
+     rml:reference "AminoacidSequence";
+     rr:datatype xsd:string
+      ];
+     ].

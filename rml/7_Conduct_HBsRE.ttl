@@ -1,0 +1,190 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<StudyConductedTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Study.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Study/{StudyID}";
+        rr:class improvit:Study
+        ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:conductedBy;
+            rr:objectMap [
+            rr:parentTriplesMap <ConductTripleMap>;
+            ];
+          ].
+
+<ConductTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Study.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Conduct/{InstituteID}-{StudyID}-{ResearchGroupID}"; #{InstituteName}-{StudyName}-{ResearchGroupName}
+        rr:class improvit:Conduct
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyID;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyID}";
+          ]
+        ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:hasStudyName;
+          rr:objectMap [
+            rr:template "http://www.project-improvit.de/Study/{StudyName}";
+            ]
+          ];
+          rr:predicateObjectMap [
+            rr:predicate improvit:hasInstituteFullName;
+            rr:objectMap [
+              rr:template "http://www.project-improvit.de/Institute/{InstituteFullName}";
+            ]
+          ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:hasInstituteID;
+          rr:objectMap [
+            rr:template "http://www.project-improvit.de/Institute/{InstituteID}";
+          ]
+        ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasResearchGroupID;
+         rr:objectMap [
+         rr:template "http://www.project-improvit.de/ResearchGroup/{ResearchGroupID}";
+         ]
+       ];
+       rr:predicateObjectMap [
+         rr:predicate improvit:conductorInstitute;
+           rr:objectMap [
+           rr:parentTriplesMap <InstituteTripleMap>;
+           ];
+      ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:conductorResearchGroup;
+          rr:objectMap [
+          rr:parentTriplesMap <ResearchGroupTripleMap>;
+          ];
+        ].
+
+<ResearchGroupTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Study.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/ResearchGroup/{ResearchGroupID}-{InstituteID}";
+        rr:class improvit:ResearchGroup
+        ];
+        rr:predicateObjectMap [
+       rr:predicate improvit:hasResearchGroupID;
+       rr:objectMap [
+         rml:reference "ResearchGroupID";
+          rr:datatype xsd:string
+        ];
+      ];
+    rr:predicateObjectMap [
+      rr:predicate improvit:hasStudyName;
+      rr:objectMap [
+        rr:template "http://www.project-improvit.de/Study/{StudyName}";
+        ]
+      ];
+      rr:predicateObjectMap [
+       rr:predicate improvit:hasInstituteID;
+       rr:objectMap [
+        rr:template "http://www.project-improvit.de/Institute/{InstituteID}";
+         ]
+     ];
+     rr:predicateObjectMap [
+       rr:predicate improvit:hasInstituteFullName;
+       rr:objectMap [
+         rr:template "http://www.project-improvit.de/Institute/{InstituteFullName}";
+       ]
+     ];
+     rr:predicateObjectMap [
+      rr:predicate improvit:hasResearchGroupName;
+      rr:objectMap [
+       rml:reference "ResearchGroupName";
+       rr:datatype xsd:string
+       ];
+    ];
+    rr:predicateObjectMap [
+     rr:predicate improvit:isPartOf;
+     rr:objectMap[
+      rr:parentTriplesMap <InstituteTripleMap>;
+       ];
+    ].
+
+<InstituteTripleMap>
+      a rr:TriplesMap;
+        rml:logicalSource [
+        rml:source "./files/Study.csv";
+        rml:referenceFormulation ql:CSV
+        ];
+      rr:subjectMap [
+        rr:template "http://www.project-improvit.de/Institute/{InstituteID}";
+        rr:class improvit:Institute
+        ];
+        rr:predicateObjectMap [
+             rr:predicate improvit:hasInstituteID;
+             rr:objectMap [
+              rml:reference "InstituteID";
+              rr:datatype xsd:string
+              ];
+            ];
+    rr:predicateObjectMap [
+        rr:predicate improvit:hasStudyName;
+        rr:objectMap [
+          rr:template "http://www.project-improvit.de/Study/{StudyName}";
+          ]
+        ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:hasInstituteName;
+            rr:objectMap [
+            rml:reference "InstituteName";
+            rr:datatype xsd:string
+            ];
+          ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasInstituteFullName;
+          rr:objectMap [
+          rml:reference "InstituteFullName";
+          rr:datatype xsd:string
+          ]
+        ];
+      rr:predicateObjectMap [
+      rr:predicate improvit:hasInstitutePhoneNumber;
+        rr:objectMap [
+          rml:reference "InstitutePhoneNumber";
+          rr:datatype xsd:string
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasInstituteEmailAddress;
+          rr:objectMap [
+          rml:reference "InstituteEmailAddress";
+          rr:datatype xsd:string
+          ]
+        ];
+      rr:predicateObjectMap [
+        rr:predicate improvit:hasInstitutePostalAddress;
+          rr:objectMap [
+          rml:reference "InstitutePostalAddress";
+          rr:datatype xsd:string
+          ];
+        ].

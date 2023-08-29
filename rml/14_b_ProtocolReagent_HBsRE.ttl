@@ -1,0 +1,177 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix time: <https://www.w3.org/TR/owl-time/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+<ExperimentalProtocolUtilizeMaterialsTripleMap>
+a rr:TriplesMap;
+    rml:logicalSource [
+     rml:source "./files/ProtocolReagent.csv";
+     rml:referenceFormulation ql:CSV
+    ];
+    rr:subjectMap [
+     rr:template "http://www.project-improvit.de/ExperimentalProtocol/{ExpProtocolName}";
+     rr:class improvit:ExperimentalProtocol
+    ].
+
+<UtilizeMaterialsTripleMap>
+            a rr:TriplesMap;
+                rml:logicalSource [
+                rml:source "./files/ProtocolReagent.csv";
+                rml:referenceFormulation ql:CSV
+                  ];
+        rr:subjectMap [
+         rr:template "http://www.project-improvit.de/UtilizeMaterilas/{ExpProtocolName}-{ProtocolReagentName}-{BufferDenominationName}-{MediumDenominationName}";
+         rr:class improvit:UtilizeMaterilas
+        ];
+        rr:predicateObjectMap [
+          rr:predicate improvit:hasStudyName;
+          rr:objectMap [
+            rr:template "http://www.project-improvit.de/Study/{StudyName}";
+            ]
+          ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:hasBufferDenominationName;
+         rr:objectMap [
+          rr:template "http://www.project-improvit.de/ProtocolBuffer/{BufferDenominationName}";
+         ]
+       ];
+       rr:predicateObjectMap [
+        rr:predicate improvit:hasMediumDenominationName;
+        rr:objectMap [
+         rr:template "http://www.project-improvit.de/ProtocolMedium/{MediumDenominationName}";
+        ]
+       ];
+       rr:predicateObjectMap [
+        rr:predicate improvit:expProtocolUtilizeMaterials;
+        rr:objectMap [
+         rr:parentTriplesMap <ExperimentalProtocolTripleMap>;
+       ];
+       ];
+        rr:predicateObjectMap [
+         rr:predicate improvit:protocolMediumUtilizeMaterial;
+         rr:objectMap [
+          rr:parentTriplesMap <ProtocolMediumTripleMap>;
+          rr:joinCondition[
+           rr:child "MediumDenominationName";
+           rr:parent "MediumDenominationName";
+           ];
+           ];
+         ];
+       rr:predicateObjectMap [
+        rr:predicate improvit:protocolBufferUtilizeMaterial;
+        rr:objectMap [
+          rr:parentTriplesMap <ProtocolBufferTripleMap>;
+          rr:joinCondition[
+           rr:child "BufferDenominationName";
+           rr:parent "BufferDenominationName";
+           ];
+           ];
+          ].
+
+<ProtocolMediumTripleMap>
+         a rr:TriplesMap;
+             rml:logicalSource [
+             rml:source "./files/MediumComponent.csv";
+               rml:referenceFormulation ql:CSV
+             ];
+         rr:subjectMap [
+             rr:template "http://www.project-improvit.de/ProtocolMedium/{MediumDenominationName}-{MediumComponent}";
+               rr:class improvit:ProtocolMedium
+                    ];
+         rr:predicateObjectMap [
+             rr:predicate improvit:hasMediumDenominationName;
+             rr:objectMap [
+                rml:reference "MediumDenominationName";
+                rr:datatype xsd:string
+             ];
+          ];
+          rr:predicateObjectMap [
+            rr:predicate improvit:hasStudyName;
+            rr:objectMap [
+              rr:template "http://www.project-improvit.de/Study/{StudyName}";
+              ]
+            ];
+            rr:predicateObjectMap [
+            rr:predicate improvit:hasMediumComponentName;
+            rr:objectMap [
+               rml:reference "MediumComponent";
+                rr:datatype xsd:string
+            ];
+       ].
+
+<ProtocolBufferTripleMap>
+       a rr:TriplesMap;
+           rml:logicalSource [
+           rml:source "./files/BufferComponent.csv";
+           rml:referenceFormulation ql:CSV
+           ];
+       rr:subjectMap [
+           rr:template "http://www.project-improvit.de/ProtocolBuffer/{BufferDenominationName}-{BufferComponent}";
+           rr:class improvit:ProtocolBuffer
+         ];
+         rr:predicateObjectMap [
+           rr:predicate improvit:hasBufferDenominationName;
+           rr:objectMap [
+               rml:reference "BufferDenominationName";
+               rr:datatype xsd:string
+             ];
+         ];
+         rr:predicateObjectMap [
+           rr:predicate improvit:hasStudyName;
+           rr:objectMap [
+             rr:template "http://www.project-improvit.de/Study/{StudyName}";
+             ]
+           ];
+           rr:predicateObjectMap [
+           rr:predicate improvit:hasBufferComponentName;
+           rr:objectMap [
+             rml:reference "BufferComponent";
+             rr:datatype xsd:string
+             ];
+         ].
+
+<ProtocolReagentTripleMap>
+             a rr:TriplesMap;
+             rml:logicalSource [
+              rml:source "./files/ProtocolReagent.csv";
+              rml:referenceFormulation ql:CSV
+                      ];
+              rr:subjectMap [
+               rr:template "http://www.project-improvit.de/ProtocolReagent/{ProtocolReagentName}";
+               rr:class improvit:ProtocolReagent
+                   ];
+              rr:predicateObjectMap [
+              rr:predicate improvit:hasProtocolReagentName;
+              rr:objectMap [
+                rml:reference "ProtocolReagentName";
+                rr:datatype xsd:string
+                 ];
+                ];
+                rr:predicateObjectMap [
+                rr:predicate improvit:hasProtocolReagentCompanyName;
+                rr:objectMap [
+                rml:reference "ProtocolReagentCompanyName";
+                rr:datatype xsd:string
+             ];
+           ];
+           rr:predicateObjectMap [
+            rr:predicate improvit:hasStudyName;
+            rr:objectMap [
+            rr:template "http://www.project-improvit.de/Study/{StudyName}";
+            ]
+          ];
+          rr:predicateObjectMap [
+            rr:predicate improvit:protocolReagentUtilizeMaterial;
+            rr:objectMap [
+              rr:parentTriplesMap <UtilizeMaterilasTripleMap>;
+               ];
+              ].
