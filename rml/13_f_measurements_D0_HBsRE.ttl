@@ -1,0 +1,3191 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+ <PersonTripleMap>
+  a rr:TriplesMap;
+   rml:logicalSource [
+   rml:source "./Person.csv";
+   rml:referenceFormulation ql:CSV ];
+  rr:subjectMap [
+  rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+  rr:class improvit:Donor ];
+  rr:predicateObjectMap [
+  rr:predicate improvit:hasSex;
+    rr:objectMap [
+    rml:reference "Sex";
+    rr:datatype xsd:string
+    ]
+  ];
+  rr:predicateObjectMap [
+  rr:predicate improvit:hasAge;
+    rr:objectMap [
+    rml:reference "Age";
+    rr:datatype xsd:nonNegativeInteger
+    ]
+  ];
+  rr:predicateObjectMap [
+  rr:predicate improvit:hasTreatment;
+    rr:objectMap [
+    rml:reference "Treatment";
+    rr:datatype xsd:string
+    ]
+  ];
+  rr:predicateObjectMap [
+  rr:predicate improvit:hasFunctionalCure;
+    rr:objectMap [
+    rml:reference "FunctionalCureLabel";
+    rr:datatype xsd:string
+    ]
+  ].
+
+#18 clinical parameters mapping
+
+<1_AlbuminDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./Albumin.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToAlbuminResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToAlbuminResultsTripleMap>; ];
+   ].
+
+<LeadsToAlbuminResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./Albumin.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<2_ALTDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./ALT.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToALTResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToALTResultsTripleMap>; ];
+   ].
+
+<LeadsToALTResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./ALT.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+<5_Anti_HCVDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./Anti_HCV.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToAnti_HCVResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToAnti_HCVResultsTripleMap>; ];
+   ].
+
+<LeadsToAnti_HCVResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./Anti_HCV.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<7_ASTDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./AST.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToASTResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToASTResultsTripleMap>; ];
+   ].
+
+<LeadsToASTResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./AST.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+<9_CRPDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CRP.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCRPResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCRPResultsTripleMap>; ];
+   ].
+
+<LeadsToCRPResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CRP.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<10_FibroscanDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./Fibroscan.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToFibroscanResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToFibroscanResultsTripleMap>; ];
+   ].
+
+<LeadsToFibroscanResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./Fibroscan.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<12_HBcrAgDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./HBcrAg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToHBcrAgResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToHBcrAgResultsTripleMap>; ];
+   ].
+
+<LeadsToHBcrAgResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./HBcrAg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<13_HBeAgDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./HBeAg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToHBeAgResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToHBeAgResultsTripleMap>; ];
+   ].
+
+<LeadsToHBeAgResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./HBeAg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<14_HBsAgDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./HBsAg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToHBsAgResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToHBsAgResultsTripleMap>; ];
+   ].
+
+<LeadsToHBsAgResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./HBsAg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<15_HBV_DNADonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./HBV_DNA.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToHBV_DNAResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToHBV_DNAResultsTripleMap>; ];
+   ].
+
+<LeadsToHBV_DNAResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./HBV_DNA.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<16_INRDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./INR.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToINRResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToINRResultsTripleMap>; ];
+   ].
+
+<LeadsToINRResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./INR.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<17_LeukocyteDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./Leukocyte.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToLeukocyteResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToLeukocyteResultsTripleMap>; ];
+   ].
+
+<LeadsToLeukocyteResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./Leukocyte.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<18_LymphocyteDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./Lymphocyte.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToLymphocyteResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToLymphocyteResultsTripleMap>; ];
+   ].
+
+<LeadsToLymphocyteResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./Lymphocyte.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<19_NeutrophilsDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./Neutrophils.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToNeutrophilsResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToNeutrophilsResultsTripleMap>; ];
+   ].
+
+<LeadsToNeutrophilsResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./Neutrophils.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<20_Quick_TestDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./Quick_Test.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToQuick_TestResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToQuick_TestResultsTripleMap>; ];
+   ].
+
+<LeadsToQuick_TestResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./Quick_Test.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<21_ThrombocyteDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./Thrombocyte.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToThrombocyteResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToThrombocyteResultsTripleMap>; ];
+   ].
+
+<LeadsToThrombocyteResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./Thrombocyte.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+<22_GGTDonorTripleMap>
+   a rr:TriplesMap;
+    rml:logicalSource [
+       rml:source "./GGT.csv";
+    rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+   rr:class improvit:Donor ];
+
+   rr:predicateObjectMap [
+    rr:predicate improvit:measurementLeadsToGGTResults;
+    rr:objectMap [
+     rr:parentTriplesMap <LeadsToGGTResultsTripleMap>; ];
+     ].
+
+<LeadsToGGTResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./GGT.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+<23_BilirubinDonorTripleMap>
+   a rr:TriplesMap;
+    rml:logicalSource [
+       rml:source "./Bilirubin.csv";
+    rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+   rr:class improvit:Donor ];
+
+   rr:predicateObjectMap [
+    rr:predicate improvit:measurementLeadsToBilirubinResults;
+    rr:objectMap [
+     rr:parentTriplesMap <LeadsToBilirubinResultsTripleMap>; ];
+     ].
+
+<LeadsToBilirubinResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./Bilirubin.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementDescription}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementDescription"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+#45 (133) flow-cytometry parameters
+
+<1_CD11cpos_CD1cneg_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD11cpos_CD1cneg_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD11cpos_CD1cneg_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD11cpos_CD1cneg_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD11cpos_CD1cneg_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD11cpos_CD1cneg_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<2_CD11cpos_CD1cpos_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD11cpos_CD1cpos_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD11cpos_CD1cpos_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD11cpos_CD1cpos_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD11cpos_CD1cpos_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD11cpos_CD1cpos_CD303neg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<3_CD14dimpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD14dimpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD14dimpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD14dimpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD14dimpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD14dimpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<4_CD14higpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD14higpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD14higpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD14higpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD14higpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD14higpos_CD16pos_HLA_DRpos_CD3neg_CD56neg_CD19neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<5_CD14pos_CD16neg_HLA_DRpos_CD3neg_CD56neg_CD19negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD14pos_CD16neg_HLA_DRpos_CD3neg_CD56neg_CD19neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD14pos_CD16neg_HLA_DRpos_CD3neg_CD56neg_CD19negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD14pos_CD16neg_HLA_DRpos_CD3neg_CD56neg_CD19negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD14pos_CD16neg_HLA_DRpos_CD3neg_CD56neg_CD19negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD14pos_CD16neg_HLA_DRpos_CD3neg_CD56neg_CD19neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<6_CD14pos_HLA_DRpos_CD3neg_CD56neg_CD19negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD14pos_HLA_DRpos_CD3neg_CD56neg_CD19neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD14pos_HLA_DRpos_CD3neg_CD56neg_CD19negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD14pos_HLA_DRpos_CD3neg_CD56neg_CD19negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD14pos_HLA_DRpos_CD3neg_CD56neg_CD19negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD14pos_HLA_DRpos_CD3neg_CD56neg_CD19neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<7_CD19neg_CD14neg_CD3pos_CD4pos_IFNyposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD4pos_IFNypos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD19neg_CD14neg_CD3pos_CD4pos_IFNyposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD19neg_CD14neg_CD3pos_CD4pos_IFNyposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD19neg_CD14neg_CD3pos_CD4pos_IFNyposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD4pos_IFNypos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<8_CD19neg_CD14neg_CD3pos_CD4pos_IFNypos_TNFaposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD4pos_IFNypos_TNFapos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD19neg_CD14neg_CD3pos_CD4pos_IFNypos_TNFaposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD19neg_CD14neg_CD3pos_CD4pos_IFNypos_TNFaposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD19neg_CD14neg_CD3pos_CD4pos_IFNypos_TNFaposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD4pos_IFNypos_TNFapos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<9_CD19neg_CD14neg_CD3pos_CD4pos_Mibp1posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD4pos_Mibp1pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD19neg_CD14neg_CD3pos_CD4pos_Mibp1posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD19neg_CD14neg_CD3pos_CD4pos_Mibp1posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD19neg_CD14neg_CD3pos_CD4pos_Mibp1posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD4pos_Mibp1pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<10_CD19neg_CD14neg_CD3pos_CD4pos_TNFaposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD4pos_TNFapos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD19neg_CD14neg_CD3pos_CD4pos_TNFaposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD19neg_CD14neg_CD3pos_CD4pos_TNFaposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD19neg_CD14neg_CD3pos_CD4pos_TNFaposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD4pos_TNFapos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<11_CD19neg_CD14neg_CD3pos_CD8pos_IFNyposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD8pos_IFNypos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD19neg_CD14neg_CD3pos_CD8pos_IFNyposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD19neg_CD14neg_CD3pos_CD8pos_IFNyposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD19neg_CD14neg_CD3pos_CD8pos_IFNyposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD8pos_IFNypos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<12_CD19neg_CD14neg_CD3pos_CD8pos_IFNypos_TNFaposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD8pos_IFNypos_TNFapos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD19neg_CD14neg_CD3pos_CD8pos_IFNypos_TNFaposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD19neg_CD14neg_CD3pos_CD8pos_IFNypos_TNFaposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD19neg_CD14neg_CD3pos_CD8pos_IFNypos_TNFaposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD8pos_IFNypos_TNFapos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<13_CD19neg_CD14neg_CD3pos_CD8pos_Mibp1posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD8pos_Mibp1pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD19neg_CD14neg_CD3pos_CD8pos_Mibp1posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD19neg_CD14neg_CD3pos_CD8pos_Mibp1posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD19neg_CD14neg_CD3pos_CD8pos_Mibp1posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD8pos_Mibp1pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<14_CD19neg_CD14neg_CD3pos_CD8pos_TNFaposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD8pos_TNFapos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD19neg_CD14neg_CD3pos_CD8pos_TNFaposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD19neg_CD14neg_CD3pos_CD8pos_TNFaposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD19neg_CD14neg_CD3pos_CD8pos_TNFaposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD19neg_CD14neg_CD3pos_CD8pos_TNFapos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<15_CD303neg_CD11cpos_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD303neg_CD11cpos_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD303neg_CD11cpos_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD303neg_CD11cpos_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD303neg_CD11cpos_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD303neg_CD11cpos_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<16_CD303pos_CD11cneg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD303pos_CD11cneg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD303pos_CD11cneg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD303pos_CD11cneg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD303pos_CD11cneg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD303pos_CD11cneg_HLA_DRpos_CD56neg_CD19neg_CD14neg_CD3neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<17_CD3neg_CD19neg_CD14neg_CD56posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3neg_CD19neg_CD14neg_CD56pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3neg_CD19neg_CD14neg_CD56posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3neg_CD19neg_CD14neg_CD56posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3neg_CD19neg_CD14neg_CD56posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3neg_CD19neg_CD14neg_CD56pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<18_CD3neg_CD19neg_CD14neg_CD56pos_CD16negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3neg_CD19neg_CD14neg_CD56pos_CD16neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3neg_CD19neg_CD14neg_CD56pos_CD16negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3neg_CD19neg_CD14neg_CD56pos_CD16negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3neg_CD19neg_CD14neg_CD56pos_CD16negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3neg_CD19neg_CD14neg_CD56pos_CD16neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<19_CD3neg_CD19neg_CD14neg_CD56pos_CD16posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3neg_CD19neg_CD14neg_CD56pos_CD16pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3neg_CD19neg_CD14neg_CD56pos_CD16posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3neg_CD19neg_CD14neg_CD56pos_CD16posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3neg_CD19neg_CD14neg_CD56pos_CD16posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3neg_CD19neg_CD14neg_CD56pos_CD16pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<20_CD3neg_CD19posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3neg_CD19pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3neg_CD19posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3neg_CD19posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3neg_CD19posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3neg_CD19pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<21_CD3pos_CD14neg_CD19neg_CD161pos_TCRVa7.2pos_CD4negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD14neg_CD19neg_CD161pos_TCRVa7.2pos_CD4neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD14neg_CD19neg_CD161pos_TCRVa7.2pos_CD4negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD14neg_CD19neg_CD161pos_TCRVa7.2pos_CD4negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD14neg_CD19neg_CD161pos_TCRVa7.2pos_CD4negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD14neg_CD19neg_CD161pos_TCRVa7.2pos_CD4neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<22_CD3pos_CD4pos_CD14neg_CD19negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<23_CD3pos_CD4pos_CD14neg_CD19neg_CD25pos_FoxP3posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_CD25pos_FoxP3pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD25pos_FoxP3posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD25pos_FoxP3posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD25pos_FoxP3posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_CD25pos_FoxP3pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<24_CD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<25_CD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_CD45RAneg_CCR7pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<26_CD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<27_CD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_CD45RApos_CCR7pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<28_CD3pos_CD4pos_CD14neg_CD19neg_GranBposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_GranBpos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_GranBposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_GranBposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_GranBposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_GranBpos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<29_CD3pos_CD4pos_CD14neg_CD19neg_HLA_DRposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_HLA_DRpos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_HLA_DRposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_HLA_DRposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_HLA_DRposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_HLA_DRpos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<30_CD3pos_CD4pos_CD14neg_CD19neg_Ki67posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_Ki67pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_Ki67posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_Ki67posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_Ki67posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_Ki67pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<31_CD3pos_CD4pos_CD14neg_CD19neg_PD1posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_PD1pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_PD1posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_PD1posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_PD1posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_PD1pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<32_CD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<33_CD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD4pos_CD14neg_CD19neg_PD1pos_KLRG1pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<34_CD3pos_CD8pos_CD14neg_CD19negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<35_CD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<36_CD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_CD45RAneg_CCR7pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<37_CD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<38_CD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_CD45RApos_CCR7pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<39_CD3pos_CD8pos_CD14neg_CD19neg_GranBposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_GranBpos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19neg_GranBposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19neg_GranBposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19neg_GranBposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_GranBpos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<40_CD3pos_CD8pos_CD14neg_CD19neg_HLA_DRposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_HLA_DRpos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19neg_HLA_DRposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19neg_HLA_DRposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19neg_HLA_DRposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_HLA_DRpos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<41_CD3pos_CD8pos_CD14neg_CD19neg_Ki67posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_Ki67pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19neg_Ki67posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19neg_Ki67posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19neg_Ki67posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_Ki67pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<42_CD3pos_CD8pos_CD14neg_CD19neg_PD1posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_PD1pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19neg_PD1posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19neg_PD1posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19neg_PD1posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_PD1pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<43_CD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1negDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1neg.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1negResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1negResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1negResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1neg.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<44_CD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1posDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1pos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1posResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1posResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1posResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_CD8pos_CD14neg_CD19neg_PD1pos_KLRG1pos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].
+
+
+<45_CD3pos_gdTCRposDonorTripleMap>
+ a rr:TriplesMap;
+  rml:logicalSource [
+     rml:source "./CD3pos_gdTCRpos.csv";
+  rml:referenceFormulation ql:CSV ];
+
+ rr:subjectMap [
+ rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+ rr:class improvit:Donor ];
+
+ rr:predicateObjectMap [
+  rr:predicate improvit:measurementLeadsToCD3pos_gdTCRposResults;
+  rr:objectMap [
+   rr:parentTriplesMap <LeadsToCD3pos_gdTCRposResultsTripleMap>; ];
+   ].
+
+<LeadsToCD3pos_gdTCRposResultsTripleMap>
+    a rr:TriplesMap;
+     rml:logicalSource [
+     rml:source "./CD3pos_gdTCRpos.csv";
+     rml:referenceFormulation ql:CSV ];
+
+   rr:subjectMap [
+   rr:template "http://www.project-improvit.de/Measurement/{ParameterName}-{BiosampleDayDescription}-{ExpProtocolName}-{MeasurementValue}";
+   rr:class improvit:Measurement ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasMeasurementValue;
+    rr:objectMap [
+    rml:reference "MeasurementValue"; ]];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasParameterName;
+    rr:objectMap [
+    rml:reference "ParameterName";
+    rr:datatype xsd:string  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasBiosampleDayDescription;
+    rr:objectMap [
+    rml:reference "BiosampleDayDescription";
+    rr:datatype xsd:int  ] ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:hasExpProtocolName;
+    rr:objectMap [
+    rml:reference "ExpProtocolName";
+    rr:datatype xsd:string  ] ].

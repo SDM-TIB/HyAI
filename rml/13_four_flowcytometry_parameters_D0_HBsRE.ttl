@@ -1,0 +1,48 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix improvit: <http://www.project-improvit.de/vocab/> .
+@base <http://www.project-improvit.de/> .
+
+ <CD8posTcellTripleMap>
+  a rr:TriplesMap;
+   rml:logicalSource [
+   rml:source "./4_flowcytometry_categorical.csv";
+   rml:referenceFormulation ql:CSV ];
+
+  rr:subjectMap [
+  rr:template "http://www.project-improvit.de/Donor/{PersonID}";
+  rr:class improvit:Donor ];
+
+  rr:predicateObjectMap [
+  rr:predicate improvit:CD8pos_Categorical;
+    rr:objectMap [
+    rml:reference "CD8pos_Categorical";
+    rr:datatype xsd:string
+    ]
+  ];
+
+   rr:predicateObjectMap [
+   rr:predicate improvit:CD8posTEM_Categorical;
+     rr:objectMap [
+     rml:reference "CD8posTEM_Categorical";
+     rr:datatype xsd:string
+     ]
+   ];
+
+    rr:predicateObjectMap [
+    rr:predicate improvit:CD8posTCM_Categorical;
+      rr:objectMap [
+      rml:reference "CD8posTCM_Categorical";
+      rr:datatype xsd:string
+      ]
+    ];
+
+   rr:predicateObjectMap [
+   rr:predicate improvit:CD4posTCM_Categorical;
+     rr:objectMap [
+     rml:reference "CD4posTCM_Categorical";
+     rr:datatype xsd:string
+     ]
+   ].
