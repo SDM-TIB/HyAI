@@ -30,7 +30,7 @@ HyAI captures knowledge encoded in chronic HBV-infected patients during experime
 -	sklearn
 -	yellowbrick
 
-Citing:
+###Cite
 If you find HyAI helpful in your work please cite the paper:
 ```
 Shahi Dost, Ariam Rivas, Hanan Begali, Annett Ziegler, Elmira Aliabadi, Markus Cornberg, Anke RM Kraft  and Maria-Esther Vidal. 2023.
