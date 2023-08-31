@@ -10,6 +10,9 @@ This repository consists of source files for the implementation of a hybrid AI (
 ### Understanding HBV Patients (use case) using HyAI
 We used HyAI in the use case of uncovering parameters of clinical, demographic, and immune phenotyping data that characterize chronic HBV patients with functional cure. HyAI has been implemented using state-of-the-art tools and techniques (as depicted in the below Figure). The heterogeneous datasets consists of 87 chronic HBV patients, including age, sex, 18 clinical observational parameters, 45 immune phenotyping parameters, and HBV treatment. The Ontology and KG system received a data integration system (DIS), that is composed of a unified schema (classes and properties), data sources, and RML mapping assertions. The KG embedding models (TransE, TransH, RESCAL, ERMLP) have been used to transform holistic profiles of 87 chronic HBV patients into low-dimensional vector representations. The Pattern Detection system used community detection algorithms (KMean, SemEP, METIS) to identify groups of HBV patients who shares similar features.
 
+
+![CKAP2023_figure_pipeline_edit](https://github.com/SDM-TIB/HyAI/assets/25593410/88d680c9-f4cc-41a1-9726-deee61879739)
+
 ### Experiment Results
 
 ### Requirements
