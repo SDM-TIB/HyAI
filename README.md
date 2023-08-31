@@ -30,6 +30,10 @@ HyAI captures knowledge encoded in chronic HBV-infected patients during experime
 -	sklearn
 -	yellowbrick
 
+### Running example for computing KGE
+
+### Running example for computing Communities
+
 ###Cite
 If you find HyAI helpful in your work please cite the paper:
 ```
