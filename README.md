@@ -12,6 +12,16 @@ This repository consists of source files for the implementation of a hybrid AI (
 ### Experiment Results
 
 ### Requirements
+- GNU Compiler Collection (GCC) or Clang.
+- GNU make (make).
+- pykeen
+- pandas
+-	numpy
+-	scipy
+-	seaborn
+-	sklearn
+-	yellowbrick
+
 
 ### License
 
