@@ -13,8 +13,8 @@ We used HyAI in the use case of uncovering parameters of clinical, demographic, 
 ### Experiment Results
 
 ### Requirements
-- GNU Compiler Collection (GCC) or Clang.
-- GNU make (make).
+- GNU Compiler Collection (GCC) or Clang
+- GNU make
 - pykeen
 - pandas
 -	numpy
