@@ -22,6 +22,12 @@ This repository consists of source files for the implementation of a hybrid AI (
 -	sklearn
 -	yellowbrick
 
+Citing:
+If you find HyAI helpful in your work please cite the papers:
+```
+Shahi Dost, Ariam Rivas, Hanan Begali, Annett Ziegler, Elmira Aliabadi, Markus Cornberg, Anke RM Kraft  and Maria-Esther Vidal. 2023.
+Unraveling the Hepatitis B Cure: A Hybrid AI Approach for Capturing Knowledge about the Immune System’s Impact (KCAP’2023)[https://www.k-cap.org/2023/]
+```
 
 ### License
 HyAI codes and source files are licensed under GNU General Public [License v3.0](https://github.com/SDM-TIB/HyAI/blob/main/LICENSE).
