@@ -27,7 +27,7 @@ We used HyAI in the use case of uncovering parameters of clinical, demographic, 
 -	yellowbrick
 
 Citing:
-If you find HyAI helpful in your work please cite the papers:
+If you find HyAI helpful in your work please cite the paper:
 ```
 Shahi Dost, Ariam Rivas, Hanan Begali, Annett Ziegler, Elmira Aliabadi, Markus Cornberg, Anke RM Kraft  and Maria-Esther Vidal. 2023.
 Unraveling the Hepatitis B Cure: A Hybrid AI Approach for Capturing Knowledge about the Immune System’s Impact (KCAP’2023)[https://www.k-cap.org/2023/]
