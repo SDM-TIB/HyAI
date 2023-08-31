@@ -24,5 +24,6 @@ This repository consists of source files for the implementation of a hybrid AI (
 
 
 ### License
+HyAI codes and source files are licensed under GNU General Public [License v3.0](https://github.com/SDM-TIB/HyAI/blob/main/LICENSE).
 
 ### Authors
