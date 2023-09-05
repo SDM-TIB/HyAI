@@ -1,0 +1,28 @@
+
+Starting the application
+Cluster files folder: TransH/Kmeans/clusters/
+Number of cluster: 2
+Number of edges: 87
+Average value of the matrix 0.958
+Weight M 0.958
+Intra edge weight theta 0.900
+Similarity matrix loaded!
+Computing measures .......
+
+************************************
+Clustering measures
+************************************
+ClusterFilename	Conductance
+cluster-0	0.627317213689
+cluster-1	0.627317213689
+************************************
+Max conductance:	0.627317213689
+Min conductance:	0.627317213689
+Average conductance:	0.627317213689
+Coverage:	0.545907339757
+Modularity:	0.007781932143
+Total cut:	1627.183410000001
+Performance:	0.489065010247
+************************************
+
+Total time 0.004 secs

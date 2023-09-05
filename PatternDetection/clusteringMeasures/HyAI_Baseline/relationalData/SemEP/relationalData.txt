@@ -1,0 +1,42 @@
+
+Starting the application
+Cluster files folder: relationalData/SemEP/clusters/
+Number of cluster: 16
+Number of edges: 87
+Average value of the matrix 0.433
+Weight M 0.433
+Intra edge weight theta 0.900
+Similarity matrix loaded!
+Computing measures .......
+
+************************************
+Clustering measures
+************************************
+ClusterFilename	Conductance
+cluster-0	0.628767689834
+cluster-1	0.916889907221
+cluster-10	0.881599044249
+cluster-11	0.749474499293
+cluster-12	1.000000000000
+cluster-13	1.000000000000
+cluster-14	0.719624974555
+cluster-15	0.924508580928
+cluster-2	0.726015157063
+cluster-3	1.000000000000
+cluster-4	0.803657633266
+cluster-5	0.865342492171
+cluster-6	0.939457642389
+cluster-7	0.494513774789
+cluster-8	1.000000000000
+cluster-9	1.000000000000
+************************************
+Max conductance:	1.000000000000
+Min conductance:	0.494513774789
+Average conductance:	0.853115712235
+Coverage:	0.471620886989
+Modularity:	0.079040046570
+Total cut:	842.078120000000
+Performance:	0.739797258542
+************************************
+
+Total time 0.004 secs

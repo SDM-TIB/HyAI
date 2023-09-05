@@ -29,11 +29,22 @@ HyAI captures knowledge encoded in chronic HBV-infected patients during experime
 -	scipy
 -	seaborn
 -	sklearn
--	yellowbrick
 
-### Running Example for Computing KGE
+### Running example for *computing KGEmbedding*
+>python KGEmbedding/ComputeKGE.py models/ ./HyAI_KG.csv
 
-### Running Example for Computing Communities
+### Running example for *PatternDetection*
+>python PatternDetection/ComputeCommunities.py
+> 
+>python PatternDetection/evaluation_metric.py
+
+
+### Running example for *PatternAnalysisExplanation*
+- StatisticsHyAI_KG.ipynb: presents the metrics to measure size in HyAI KG.
+- BaselineRelationalForm.ipynb: we establish a baseline using the HBV data in its relational form.
+- JaccardIndex_CategoryBasedScore.ipynb: shows the quality of the communities based on the gold standard. Metrics $\mathcal{CS}$ and $\mathcal{J}$ assess the baseline and HyAI.
+- ViolinPlot.ipynb: Analyzing Patterns of HBV Patients. HyAI Partitioning.
+
 
 ### Cite
 If you find HyAI helpful in your work please cite the paper:

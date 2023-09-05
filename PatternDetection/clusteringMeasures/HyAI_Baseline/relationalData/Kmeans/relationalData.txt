@@ -1,0 +1,42 @@
+
+Starting the application
+Cluster files folder: relationalData/Kmeans/clusters/
+Number of cluster: 16
+Number of edges: 87
+Average value of the matrix 0.433
+Weight M 0.433
+Intra edge weight theta 0.900
+Similarity matrix loaded!
+Computing measures .......
+
+************************************
+Clustering measures
+************************************
+ClusterFilename	Conductance
+cluster-0	0.881599044249
+cluster-1	0.732672329681
+cluster-10	0.961232382808
+cluster-11	0.595146954672
+cluster-12	0.884138764796
+cluster-13	0.884631670045
+cluster-14	1.000000000000
+cluster-15	0.654080570280
+cluster-2	0.852163649074
+cluster-3	0.689004499220
+cluster-4	0.942086629348
+cluster-5	1.000000000000
+cluster-6	0.914019025052
+cluster-7	1.000000000000
+cluster-8	1.000000000000
+cluster-9	0.939457642389
+************************************
+Max conductance:	1.000000000000
+Min conductance:	0.595146954672
+Average conductance:	0.870639572601
+Coverage:	0.173580618925
+Modularity:	0.050079424827
+Total cut:	1317.065079999999
+Performance:	0.578058079395
+************************************
+
+Total time 0.004 secs

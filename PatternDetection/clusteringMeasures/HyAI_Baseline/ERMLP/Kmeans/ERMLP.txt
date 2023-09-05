@@ -1,0 +1,28 @@
+
+Starting the application
+Cluster files folder: ERMLP/Kmeans/clusters/
+Number of cluster: 2
+Number of edges: 87
+Average value of the matrix 0.759
+Weight M 0.759
+Intra edge weight theta 0.900
+Similarity matrix loaded!
+Computing measures .......
+
+************************************
+Clustering measures
+************************************
+ClusterFilename	Conductance
+cluster-0	0.636063532380
+cluster-1	0.636063532380
+************************************
+Max conductance:	0.636063532380
+Min conductance:	0.636063532380
+Average conductance:	0.636063532380
+Coverage:	0.531429639252
+Modularity:	-0.003241109724
+Total cut:	1326.129870000000
+Performance:	0.475302695303
+************************************
+
+Total time 0.003 secs

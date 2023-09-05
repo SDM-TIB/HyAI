@@ -1,0 +1,28 @@
+
+Starting the application
+Cluster files folder: RESCAL/METIS/clusters/
+Number of cluster: 2
+Number of edges: 87
+Average value of the matrix 0.145
+Weight M 0.145
+Intra edge weight theta 0.900
+Similarity matrix loaded!
+Computing measures .......
+
+************************************
+Clustering measures
+************************************
+ClusterFilename	Conductance
+cluster-0	0.544299747998
+cluster-1	0.544299747998
+************************************
+Max conductance:	0.544299747998
+Min conductance:	0.544299747998
+Average conductance:	0.544299747998
+Coverage:	0.679849115724
+Modularity:	0.095054784131
+Total cut:	161.158980000000
+Performance:	0.641563236309
+************************************
+
+Total time 0.002 secs

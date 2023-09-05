@@ -1,0 +1,28 @@
+
+Starting the application
+Cluster files folder: RESCAL/Kmeans/clusters/
+Number of cluster: 2
+Number of edges: 87
+Average value of the matrix 0.145
+Weight M 0.145
+Intra edge weight theta 0.900
+Similarity matrix loaded!
+Computing measures .......
+
+************************************
+Clustering measures
+************************************
+ClusterFilename	Conductance
+cluster-0	0.711577027560
+cluster-1	0.711577027560
+************************************
+Max conductance:	0.711577027560
+Min conductance:	0.711577027560
+Average conductance:	0.711577027560
+Coverage:	0.653249387158
+Modularity:	0.021818113375
+Total cut:	174.548870000000
+Performance:	0.352863283978
+************************************
+
+Total time 0.003 secs

@@ -1,0 +1,42 @@
+
+Starting the application
+Cluster files folder: relationalData/METIS/clusters/
+Number of cluster: 16
+Number of edges: 87
+Average value of the matrix 0.433
+Weight M 0.433
+Intra edge weight theta 0.900
+Similarity matrix loaded!
+Computing measures .......
+
+************************************
+Clustering measures
+************************************
+ClusterFilename	Conductance
+cluster-0	0.654080570280
+cluster-1	0.929034859769
+cluster-10	0.916495587428
+cluster-11	0.924412300849
+cluster-12	0.928861224351
+cluster-13	0.922464822955
+cluster-14	0.924527238920
+cluster-15	0.924722574831
+cluster-2	0.745995908018
+cluster-3	0.822150449829
+cluster-4	0.676939600731
+cluster-5	0.930908475700
+cluster-6	0.940328269170
+cluster-7	0.866875476066
+cluster-8	0.915268575817
+cluster-9	0.929640989569
+************************************
+Max conductance:	0.940328269170
+Min conductance:	0.654080570280
+Average conductance:	0.872044182768
+Coverage:	0.090248405626
+Modularity:	0.014393481182
+Total cut:	1449.871679999996
+Performance:	0.539928737229
+************************************
+
+Total time 0.004 secs

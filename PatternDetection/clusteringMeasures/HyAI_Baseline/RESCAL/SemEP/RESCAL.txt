@@ -1,0 +1,28 @@
+
+Starting the application
+Cluster files folder: RESCAL/SemEP/clusters/
+Number of cluster: 2
+Number of edges: 87
+Average value of the matrix 0.145
+Weight M 0.145
+Intra edge weight theta 0.900
+Similarity matrix loaded!
+Computing measures .......
+
+************************************
+Clustering measures
+************************************
+ClusterFilename	Conductance
+cluster-0	0.493263242212
+cluster-1	0.493263242212
+************************************
+Max conductance:	0.493263242212
+Min conductance:	0.493263242212
+Average conductance:	0.493263242212
+Coverage:	0.591876415891
+Modularity:	0.076980188212
+Total cut:	205.443070000000
+Performance:	0.563742282657
+************************************
+
+Total time 0.004 secs

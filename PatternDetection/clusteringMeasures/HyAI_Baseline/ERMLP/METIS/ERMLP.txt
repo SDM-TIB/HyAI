@@ -1,0 +1,28 @@
+
+Starting the application
+Cluster files folder: ERMLP/METIS/clusters/
+Number of cluster: 2
+Number of edges: 87
+Average value of the matrix 0.759
+Weight M 0.759
+Intra edge weight theta 0.900
+Similarity matrix loaded!
+Computing measures .......
+
+************************************
+Clustering measures
+************************************
+ClusterFilename	Conductance
+cluster-0	0.508693272298
+cluster-1	0.508693272298
+************************************
+Max conductance:	0.508693272298
+Min conductance:	0.508693272298
+Average conductance:	0.508693272298
+Coverage:	0.497108882466
+Modularity:	-0.002956165937
+Total cut:	1423.263160000000
+Performance:	0.478102827276
+************************************
+
+Total time 0.002 secs

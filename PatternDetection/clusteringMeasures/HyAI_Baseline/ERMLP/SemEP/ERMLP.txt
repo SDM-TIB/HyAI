@@ -1,0 +1,28 @@
+
+Starting the application
+Cluster files folder: ERMLP/SemEP/clusters/
+Number of cluster: 2
+Number of edges: 87
+Average value of the matrix 0.759
+Weight M 0.759
+Intra edge weight theta 0.900
+Similarity matrix loaded!
+Computing measures .......
+
+************************************
+Clustering measures
+************************************
+ClusterFilename	Conductance
+cluster-0	0.810575332034
+cluster-1	0.810575332034
+************************************
+Max conductance:	0.810575332034
+Min conductance:	0.810575332034
+Average conductance:	0.810575332034
+Coverage:	0.681770899264
+Modularity:	-0.002698559888
+Total cut:	900.639800000001
+Performance:	0.465234823016
+************************************
+
+Total time 0.003 secs
