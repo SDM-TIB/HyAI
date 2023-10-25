@@ -54,4 +54,4 @@ Unraveling the Hepatitis B Cure: A Hybrid AI Approach for Capturing Knowledge ab
 ```
 
 ### License
-HyAI codes and source files are licensed under GNU General Public [License v3.0](https://github.com/SDM-TIB/HyAI/blob/main/LICENSE).
+HyAI codes and source files are licensed under MIT License [Copyright (c) 2023]([https://github.com/SDM-TIB/HyAI/blob/main/LICENSE](https://github.com/SDM-TIB/HyAI/blob/main/LICENSE)https://github.com/SDM-TIB/HyAI/blob/main/LICENSE).
