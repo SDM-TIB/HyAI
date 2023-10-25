@@ -50,7 +50,7 @@ HyAI captures knowledge encoded in chronic HBV-infected patients during experime
 If you find HyAI helpful in your work please cite the paper:
 ```
 Shahi Dost, Ariam Rivas, Hanan Begali, Annett Ziegler, Elmira Aliabadi, Markus Cornberg, Anke RM Kraft  and Maria-Esther Vidal. 2023.
-Unraveling the Hepatitis B Cure: A Hybrid AI Approach for Capturing Knowledge about the Immune System’s Impact (KCAP’2023)[https://www.k-cap.org/2023/]
+Unraveling the Hepatitis B Cure: A Hybrid AI Approach for Capturing Knowledge about the Immune System’s Impact (ACM ISBN 979-8-4007-0141-2/23/12)[https://doi.org/10.1145/3587259.3627558]
 ```
 
 ### License
